@@ -1,0 +1,2966 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>أنا أتصرف بأمان | رحلة التأهب للإنذار المبكر</title>
+  
+  <!-- خطوط عربية واضحة ومناسبة للأطفال والتعليم -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- مكتبة توليد QR Code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  
+  <!-- مكتبة تصدير Excel -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'Tajawal', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              darkest: '#041f15',
+              dark: '#062c1e',
+              deep: '#0a3d2a',
+              emerald: '#059669',
+              light: '#10b981',
+              mint: '#ecfdf5',
+              ivory: '#fafaf5',
+              gold: '#d4af37',
+              goldLight: '#fefce8',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* أنماط مخصصة للهوية البصرية والحركات السينمائية */
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Cairo', 'Tajawal', sans-serif;
+      background-color: #fafaf5;
+      color: #062c1e;
+      overflow-x: hidden;
+    }
+
+    /* شبكة تقنية متحركة لشاشة البداية */
+    .tech-grid {
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, rgba(16, 185, 129, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(16, 185, 129, 0.08) 1px, transparent 1px);
+      animation: gridMove 25s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 36px 36px; }
+    }
+
+    /* توهج خريطة المملكة */
+    .ksa-glow {
+      filter: drop-shadow(0 0 18px rgba(16, 185, 129, 0.65)) drop-shadow(0 4px 12px rgba(212, 175, 55, 0.35));
+      animation: floatMap 4.5s ease-in-out infinite;
+    }
+
+    @keyframes floatMap {
+      0%, 100% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-8px) scale(1.02); }
+    }
+
+    /* نبض النقاط الضوئية على الخريطة */
+    .pulse-dot {
+      animation: pulseRing 2.2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+      transform-origin: center;
+    }
+
+    @keyframes pulseRing {
+      0% { transform: scale(0.85); opacity: 0.9; }
+      70% { transform: scale(1.8); opacity: 0; }
+      100% { transform: scale(0.85); opacity: 0; }
+    }
+
+    /* ظهور تدريجي للعناصر */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUpAnim 0.8s ease forwards;
+    }
+    .delay-1 { animation-delay: 0.25s; }
+    .delay-2 { animation-delay: 0.5s; }
+    .delay-3 { animation-delay: 0.75s; }
+    .delay-4 { animation-delay: 1s; }
+
+    @keyframes fadeUpAnim {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* تأثيرات الأزرار الخضراء */
+    .btn-emerald {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 20px -4px rgba(5, 150, 105, 0.45);
+    }
+    .btn-emerald:hover {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -4px rgba(16, 185, 129, 0.55);
+    }
+    .btn-emerald:active {
+      transform: scale(0.97);
+    }
+
+    /* بطاقات الهوية */
+    .safe-card {
+      background: #ffffff;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(5, 150, 105, 0.14);
+      box-shadow: 0 10px 30px -10px rgba(6, 44, 30, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .gold-border {
+      border: 1.5px solid rgba(212, 175, 55, 0.55);
+    }
+
+    /* تنسيقات الطباعة لتقرير PDF */
+    @media print {
+      body * { visibility: hidden; }
+      #printable-report, #printable-report * { visibility: visible; }
+      #printable-report {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white !important;
+        color: black !important;
+        padding: 20px;
+      }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-brand-ivory text-brand-dark selection:bg-brand-emerald selection:text-white">
+
+  <!-- نظام الإشعارات العائم (بديل alert) -->
+  <div id="toast-container" class="fixed top-4 left-4 right-4 md:left-auto md:right-6 md:w-96 z-[100] flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- ========================================================= -->
+  <!-- 1. شاشة البداية الافتتاحية السينمائية (Splash Screen)     -->
+  <!-- ========================================================= -->
+  <section id="splash-screen" class="fixed inset-0 z-50 bg-brand-darkest tech-grid flex flex-col items-center justify-between p-6 text-center overflow-y-auto transition-opacity duration-700">
+    <!-- هالات إضاءة خضراء متحركة في الخلفية -->
+    <div class="pointer-events-none fixed top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] md:w-[520px] md:h-[520px] rounded-full bg-brand-emerald/20 blur-[90px]"></div>
+    <div class="pointer-events-none fixed bottom-10 right-10 w-64 h-64 rounded-full bg-brand-gold/10 blur-[80px]"></div>
+
+    <!-- شارة علوية -->
+    <div class="relative z-10 pt-2 fade-up">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-deep/80 border border-brand-gold/40 text-brand-gold text-xs md:text-sm font-bold tracking-wide">
+        <span class="w-2 h-2 rounded-full bg-brand-light animate-ping"></span>
+        المدرسة الابتدائية الثانية والعشرون بعد المائة
+      </span>
+    </div>
+
+    <!-- المحتوى الأوسط: خريطة المملكة ثلاثية الأبعاد + العناوين -->
+    <div class="relative z-10 flex flex-col items-center max-w-xl mx-auto my-auto py-4">
+      <!-- خريطة المملكة العربية السعودية SVG ثلاثية الأبعاد متوهجة -->
+      <div class="w-60 h-52 sm:w-72 sm:h-60 md:w-80 md:h-64 flex items-center justify-center mb-3 ksa-glow fade-up">
+        <svg viewBox="0 0 420 350" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="خريطة المملكة العربية السعودية">
+          <defs>
+            <linearGradient id="ksa3dTop" x1="40" y1="30" x2="380" y2="310" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#10b981" stop-opacity="0.95" />
+              <stop offset="50%" stop-color="#059669" stop-opacity="0.9" />
+              <stop offset="100%" stop-color="#047857" stop-opacity="0.95" />
+            </linearGradient>
+            <linearGradient id="ksa3dDepth" x1="40" y1="40" x2="380" y2="325" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#022c22" />
+              <stop offset="100%" stop-color="#064e3b" />
+            </linearGradient>
+            <linearGradient id="goldStroke" x1="0" y1="0" x2="420" y2="350" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#fde047" />
+              <stop offset="50%" stop-color="#d4af37" />
+              <stop offset="100%" stop-color="#10b981" />
+            </linearGradient>
+          </defs>
+
+          <!-- الطبقة السفلية لإعطاء عمق ثلاثي الأبعاد -->
+          <path transform="translate(0, 11)" d="M72 68 L112 52 L145 34 L176 48 L215 76 L262 110 L294 128 L314 148 L352 162 L378 182 L364 218 L345 256 L292 272 L244 282 L202 296 L176 312 L152 304 L138 278 L118 242 L95 198 L78 156 L58 112 L52 84 Z" fill="url(#ksa3dDepth)" stroke="#065f46" stroke-width="2" />
+
+          <!-- الطبقة الرئيسية المضيئة لحدود المملكة -->
+          <path d="M72 68 L112 52 L145 34 L176 48 L215 76 L262 110 L294 128 L314 148 L352 162 L378 182 L364 218 L345 256 L292 272 L244 282 L202 296 L176 312 L152 304 L138 278 L118 242 L95 198 L78 156 L58 112 L52 84 Z" fill="url(#ksa3dTop)" stroke="url(#goldStroke)" stroke-width="3" stroke-linejoin="round" />
+
+          <!-- خطوط شبكية داخلية -->
+          <path d="M115 95 Q195 135 285 165 M95 165 Q190 190 325 215 M165 65 L215 275 M235 95 L265 268" stroke="rgba(255,255,255,0.22)" stroke-width="1.2" stroke-dasharray="4 4" />
+
+          <!-- نقاط ضوئية نابضة تمثل مناطق المملكة (الرياض، مكة، المدينة، الشرقية، الشمالية، الجنوبية) -->
+          <!-- الرياض -->
+          <circle cx="228" cy="175" r="10" fill="#fde047" class="pulse-dot" />
+          <circle cx="228" cy="175" r="4.5" fill="#ffffff" />
+          <!-- مكة المكرمة وجدة -->
+          <circle cx="118" cy="205" r="10" fill="#34d399" class="pulse-dot" style="animation-delay:0.4s" />
+          <circle cx="118" cy="205" r="4.5" fill="#ffffff" />
+          <!-- المدينة المنورة -->
+          <circle cx="115" cy="152" r="9" fill="#fde047" class="pulse-dot" style="animation-delay:0.8s" />
+          <circle cx="115" cy="152" r="4" fill="#ffffff" />
+          <!-- المنطقة الشرقية -->
+          <circle cx="292" cy="156" r="9" fill="#34d399" class="pulse-dot" style="animation-delay:1.1s" />
+          <circle cx="292" cy="156" r="4" fill="#ffffff" />
+          <!-- المنطقة الشمالية -->
+          <circle cx="152" cy="74" r="8" fill="#fde047" class="pulse-dot" style="animation-delay:1.4s" />
+          <circle cx="152" cy="74" r="3.5" fill="#ffffff" />
+          <!-- المنطقة الجنوبية -->
+          <circle cx="166" cy="272" r="9" fill="#34d399" class="pulse-dot" style="animation-delay:1.7s" />
+          <circle cx="166" cy="272" r="4" fill="#ffffff" />
+        </svg>
+      </div>
+
+      <!-- النص أسفل الخريطة -->
+      <p class="text-brand-gold font-bold text-base sm:text-lg tracking-wide mb-3 fade-up delay-1">
+        وطني.. المملكة العربية السعودية 🇸🇦
+      </p>
+
+      <!-- عنوان المبادرة -->
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-2 fade-up delay-2">
+        أنا أتصرف بأمان
+      </h1>
+
+      <!-- العنوان الفرعي -->
+      <div class="inline-block px-5 py-1.5 rounded-2xl bg-brand-emerald/25 border border-brand-light/40 text-brand-light font-bold text-lg sm:text-xl mb-4 fade-up delay-2">
+        رحلة التأهب للإنذار المبكر
+      </div>
+
+      <!-- العبارة الرئيسية -->
+      <p class="text-emerald-100/90 text-sm sm:text-base md:text-lg max-w-md leading-relaxed mb-6 fade-up delay-3">
+        «سلامتنا مسؤوليتنا جميعاً.. معاً نحو مدرسة آمنة»
+      </p>
+
+      <!-- زر الانطلاق -->
+      <button onclick="enterPlatform()" class="btn-emerald text-white font-extrabold text-lg sm:text-xl px-8 py-4 rounded-2xl border border-brand-gold/50 flex items-center gap-3 cursor-pointer fade-up delay-4">
+        <span>انطلق إلى رحلة الأمان</span>
+        <svg class="w-6 h-6 rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- بيانات القيادة المدرسية في أسفل شاشة البداية -->
+    <div class="relative z-10 text-emerald-200/75 text-xs sm:text-sm pb-2 fade-up delay-4">
+      مديرة المدرسة: <span class="text-white font-bold">مريم الغامدي</span> &nbsp;|&nbsp; مشاركة: <span class="text-white font-bold">تغريد علام</span>
+    </div>
+  </section>
+
+  <!-- ========================================================= -->
+  <!-- الهيكل الرئيسي للمنصة بعد تجاوز شاشة البداية              -->
+  <!-- ========================================================= -->
+  <div id="main-app" class="hidden flex-col min-h-screen">
+    
+    <!-- الشريط العلوي الثابت (Header) -->
+    <header class="sticky top-0 z-40 bg-brand-darkest text-white shadow-lg border-b border-brand-gold/30">
+      <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+        
+        <!-- يمين: أيقونة خريطة المملكة + اسم المبادرة والمدرسة -->
+        <div onclick="navigateTo('dashboard')" class="flex items-center gap-3 cursor-pointer group">
+          <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-brand-deep border border-brand-gold/50 flex items-center justify-center shrink-0 shadow-inner group-hover:scale-105 transition-transform">
+            <!-- أيقونة خريطة المملكة المصغرة -->
+            <svg viewBox="0 0 100 85" class="w-8 h-7" fill="none">
+              <path d="M16 17 L27 12 L36 8 L44 12 L54 19 L66 28 L75 33 L80 38 L90 42 L96 47 L92 56 L87 66 L73 70 L61 73 L50 77 L43 81 L37 79 L33 72 L28 62 L22 50 L18 39 L13 28 L11 21 Z" fill="#10b981" stroke="#d4af37" stroke-width="2.5"/>
+              <circle cx="56" cy="44" r="3" fill="#ffffff"/>
+              <circle cx="29" cy="52" r="2.5" fill="#fde047"/>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h1 class="text-base sm:text-xl font-black text-white leading-none">أنا أتصرف بأمان</h1>
+              <span class="hidden sm:inline-block text-[11px] bg-brand-emerald/30 text-brand-light border border-brand-light/30 px-2 py-0.5 rounded-full font-bold">
+                رحلة التأهب للإنذار المبكر
+              </span>
+            </div>
+            <p class="text-[11px] sm:text-xs text-brand-gold font-semibold mt-1">
+              المدرسة الابتدائية الثانية والعشرون بعد المائة
+            </p>
+          </div>
+        </div>
+
+        <!-- يسار: بيانات الإدارة المصغرة + أزرار سريعة -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <div class="hidden lg:flex flex-col text-left text-xs text-emerald-100/90 border-l border-emerald-800 pl-3">
+            <span>مديرة المدرسة: <strong class="text-white">مريم الغامدي</strong></span>
+            <span>مشاركة: <strong class="text-white">تغريد علام</strong></span>
+          </div>
+
+          <!-- زر العودة للرئيسية -->
+          <button id="nav-home-btn" onclick="navigateTo('dashboard')" class="hidden px-3 py-2 rounded-xl bg-brand-deep hover:bg-brand-emerald text-white text-xs sm:text-sm font-bold border border-emerald-700/60 transition flex items-center gap-1.5 cursor-pointer">
+            <span>الرئيسية</span>
+            <span>🏠</span>
+          </button>
+
+          <!-- زر المشاركة والباركود -->
+          <button onclick="openShareModal()" title="مشاركة الرابط ورمز QR" class="p-2.5 rounded-xl bg-brand-deep hover:bg-brand-emerald text-brand-gold hover:text-white border border-brand-gold/30 transition cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            </svg>
+          </button>
+
+          <!-- زر دخول لوحة الإدارة المحمية -->
+          <button onclick="openAdminGate()" title="لوحة إدارة المبادرة" class="p-2.5 rounded-xl bg-brand-deep hover:bg-brand-emerald text-emerald-200 hover:text-white border border-emerald-700/60 transition cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- شريط معلومات الإدارة للهواتف -->
+      <div class="lg:hidden bg-brand-dark px-4 py-1.5 text-[11px] text-emerald-100 flex items-center justify-between border-t border-emerald-900/80">
+        <span>مديرة المدرسة: <strong class="text-white">مريم الغامدي</strong></span>
+        <span>مشاركة: <strong class="text-white">تغريد علام</strong></span>
+      </div>
+
+      <!-- شريط حالة الربط السحابي الدائم في أعلى الصفحة -->
+      <div class="bg-brand-darkest/95 border-t border-emerald-900/70 px-4 py-1 text-center">
+        <span id="top-cloud-badge" class="inline-flex items-center gap-2 text-[11px] sm:text-xs font-bold text-brand-light">
+          <span class="w-2 h-2 rounded-full bg-brand-light animate-ping"></span>
+          <span>جاري الاتصال بقاعدة البيانات السحابية الدائمة...</span>
+        </span>
+      </div>
+    </header>
+
+    <!-- حاوية الأقسام الديناميكية (Single Page Navigation) -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6 sm:py-8">
+
+      <!-- ===================================================== -->
+      <!-- 2. لوحة التحكم الرئيسية (Dashboard)                   -->
+      <!-- ===================================================== -->
+      <div id="view-dashboard" class="space-y-6 sm:space-y-8">
+        
+        <!-- بطاقة الترحيب والهوية -->
+        <div class="rounded-3xl bg-gradient-to-l from-brand-darkest via-brand-dark to-brand-deep text-white p-6 sm:p-8 shadow-xl border border-brand-gold/40 relative overflow-hidden">
+          <div class="absolute -left-10 -bottom-10 w-48 h-48 rounded-full bg-brand-emerald/20 blur-2xl pointer-events-none"></div>
+          <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-center md:text-right space-y-2">
+              <span class="inline-block px-3 py-1 rounded-full bg-brand-emerald/30 border border-brand-light/30 text-brand-light text-xs font-bold">
+                رحلة التأهب للإنذار المبكر
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-black text-white">
+                مرحباً بكِ في مبادرة «أنا أتصرف بأمان»
+              </h2>
+              <p class="text-emerald-100/90 text-sm sm:text-base max-w-xl leading-relaxed">
+                «سلامتنا مسؤوليتنا جميعاً.. معاً نحو مدرسة آمنة» — منصة تفاعلية لتعزيز الوعي الوقائي وسرعة الاستجابة الصحيحة لطالبات ومنسوبات المدرسة.
+              </p>
+              <!-- حالة الطالبة الحالية إن كانت مسجلة -->
+              <div id="active-student-banner" class="hidden pt-2">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-xl bg-brand-gold/20 border border-brand-gold/50 text-brand-gold text-xs sm:text-sm font-bold">
+                  <span>🌟 البطلة المسجلة حالياً:</span>
+                  <span id="active-student-name-display"></span>
+                </span>
+              </div>
+            </div>
+
+            <!-- رسم توضيحي مصغر للمدرسة الآمنة -->
+            <div class="shrink-0 bg-brand-darkest/60 p-4 rounded-2xl border border-brand-gold/30 flex items-center gap-3">
+              <div class="w-14 h-14 rounded-2xl bg-brand-emerald/25 flex items-center justify-center text-3xl">
+                🏫
+              </div>
+              <div class="text-right">
+                <div class="text-xs text-brand-gold font-bold">حالة الربط السحابي</div>
+                <div id="db-status-indicator" class="text-sm font-extrabold text-brand-light flex items-center gap-1.5 mt-0.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-brand-light animate-pulse"></span>
+                  <span>متصل ومباشر</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- بطاقات الإحصائيات الثلاث المتجاورة (ديناميكية من قاعدة البيانات) -->
+        <div>
+          <div class="flex items-center justify-between mb-3 px-1">
+            <h3 class="text-base sm:text-lg font-extrabold text-brand-dark flex items-center gap-2">
+              <span class="w-2 h-6 rounded-full bg-brand-emerald"></span>
+              إحصائيات المبادرة المباشرة
+            </h3>
+            <span class="text-xs text-emerald-700 font-semibold">تُحدّث تلقائياً مع كل مشاركة</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- البطاقة 1: عدد المشاركات -->
+            <div class="safe-card p-5 bg-gradient-to-br from-white to-brand-mint border-emerald-200 flex items-center justify-between">
+              <div>
+                <p class="text-xs sm:text-sm font-bold text-emerald-800 mb-1">عدد المشاركات</p>
+                <p id="stat-participants" class="text-3xl sm:text-4xl font-black text-brand-darkest">0</p>
+                <p class="text-[11px] text-emerald-600 mt-1">طالبة ومشاركة مسجلة</p>
+              </div>
+              <div class="w-14 h-14 rounded-2xl bg-brand-emerald/15 text-brand-emerald flex items-center justify-center text-3xl">
+                👩‍🎓
+              </div>
+            </div>
+
+            <!-- البطاقة 2: عدد الأسر المشاركة -->
+            <div class="safe-card p-5 bg-gradient-to-br from-white to-brand-mint border-emerald-200 flex items-center justify-between">
+              <div>
+                <p class="text-xs sm:text-sm font-bold text-emerald-800 mb-1">عدد الأسر المشاركة</p>
+                <p id="stat-families" class="text-3xl sm:text-4xl font-black text-brand-darkest">0</p>
+                <p class="text-[11px] text-emerald-600 mt-1">أسرة متفاعلة في المبادرة</p>
+              </div>
+              <div class="w-14 h-14 rounded-2xl bg-brand-gold/20 text-amber-700 flex items-center justify-center text-3xl">
+                👨‍👩‍👧
+              </div>
+            </div>
+
+            <!-- البطاقة 3: نسبة جاهزية المدرسة -->
+            <div class="safe-card p-5 bg-gradient-to-br from-white to-brand-mint border-emerald-200 flex items-center justify-between">
+              <div>
+                <p class="text-xs sm:text-sm font-bold text-emerald-800 mb-1">نسبة جاهزية المدرسة</p>
+                <p id="stat-readiness" class="text-3xl sm:text-4xl font-black text-brand-emerald">0%</p>
+                <p class="text-[11px] text-emerald-600 mt-1">مؤشر معرفي من الإكمال والاختبار</p>
+              </div>
+              <div class="w-14 h-14 rounded-2xl bg-brand-emerald/15 text-brand-emerald flex items-center justify-center text-3xl">
+                🛡️
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- أزرار الأقسام الرئيسية الثلاثة بنفس الترتيب والتنسيق -->
+        <div>
+          <h3 class="text-base sm:text-lg font-extrabold text-brand-dark flex items-center gap-2 mb-3 px-1">
+            <span class="w-2 h-6 rounded-full bg-brand-gold"></span>
+            أقسام المبادرة الرئيسية
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <!-- 1. رحلة الأمان 🗺️ -->
+            <button onclick="navigateTo('journey')" class="group text-right safe-card p-6 hover:border-brand-emerald hover:shadow-xl cursor-pointer flex flex-col justify-between relative overflow-hidden">
+              <div class="absolute top-0 left-0 w-24 h-24 bg-brand-emerald/5 rounded-br-full group-hover:scale-125 transition-transform"></div>
+              <div>
+                <div class="w-16 h-16 rounded-2xl bg-brand-emerald text-white flex items-center justify-center text-3xl shadow-md mb-4 group-hover:scale-110 transition-transform">
+                  🗺️
+                </div>
+                <h4 class="text-xl sm:text-2xl font-black text-brand-darkest mb-2">رحلة الأمان</h4>
+                <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                  تجربة تفاعلية من 5 مراحل متدرجة تتعلمين فيها خطوات التصرف الصحيح عند الإنذار المبكر.
+                </p>
+              </div>
+              <div class="inline-flex items-center gap-2 text-brand-emerald font-extrabold text-sm group-hover:translate-x-[-4px] transition-transform">
+                <span>ابدئي الرحلة الآن</span>
+                <span>←</span>
+              </div>
+            </button>
+
+            <!-- 2. ركن التوعية 📚 -->
+            <button onclick="navigateTo('awareness')" class="group text-right safe-card p-6 hover:border-brand-emerald hover:shadow-xl cursor-pointer flex flex-col justify-between relative overflow-hidden">
+              <div class="absolute top-0 left-0 w-24 h-24 bg-brand-gold/10 rounded-br-full group-hover:scale-125 transition-transform"></div>
+              <div>
+                <div class="w-16 h-16 rounded-2xl bg-brand-dark text-brand-gold border border-brand-gold/50 flex items-center justify-center text-3xl shadow-md mb-4 group-hover:scale-110 transition-transform">
+                  📚
+                </div>
+                <h4 class="text-xl sm:text-2xl font-black text-brand-darkest mb-2">ركن التوعية</h4>
+                <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                  10 بطاقات توعوية مصورة ومبسطة حول مخارج الطوارئ، نقطة التجمع، وقواعد السلامة المدرسية.
+                </p>
+              </div>
+              <div class="inline-flex items-center gap-2 text-brand-emerald font-extrabold text-sm group-hover:translate-x-[-4px] transition-transform">
+                <span>استكشفي البطاقات</span>
+                <span>←</span>
+              </div>
+            </button>
+
+            <!-- 3. جدارية الأمان 🧱 -->
+            <button onclick="navigateTo('wall')" class="group text-right safe-card p-6 hover:border-brand-emerald hover:shadow-xl cursor-pointer flex flex-col justify-between relative overflow-hidden">
+              <div class="absolute top-0 left-0 w-24 h-24 bg-brand-emerald/5 rounded-br-full group-hover:scale-125 transition-transform"></div>
+              <div>
+                <div class="w-16 h-16 rounded-2xl bg-brand-emerald text-white flex items-center justify-center text-3xl shadow-md mb-4 group-hover:scale-110 transition-transform">
+                  🧱
+                </div>
+                <h4 class="text-xl sm:text-2xl font-black text-brand-darkest mb-2">جدارية الأمان</h4>
+                <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                  شاركي برسالتك التوعوية أو رسمتك الإبداعية لتنير جدارية المدرسة بعد اعتماد الإدارة.
+                </p>
+              </div>
+              <div class="inline-flex items-center gap-2 text-brand-emerald font-extrabold text-sm group-hover:translate-x-[-4px] transition-transform">
+                <span>أضيفي مشاركتك</span>
+                <span>←</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- الأقسام التفاعلية التكميلية (الاختبار - قياس الأثر - الشواهد) -->
+        <div>
+          <h3 class="text-base sm:text-lg font-extrabold text-brand-dark flex items-center gap-2 mb-3 px-1">
+            <span class="w-2 h-6 rounded-full bg-brand-emerald"></span>
+            التقييم وقياس الأثر والتوثيق
+          </h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- الاختبار التفاعلي -->
+            <button onclick="navigateTo('quiz')" class="safe-card p-5 text-right hover:border-brand-gold flex items-center gap-4 cursor-pointer group">
+              <div class="w-14 h-14 rounded-2xl bg-brand-goldLight border border-brand-gold/40 flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">
+                🧠
+              </div>
+              <div>
+                <h4 class="font-black text-brand-darkest text-base sm:text-lg">ماذا أعرف عن الأمان؟</h4>
+                <p class="text-xs text-gray-600 mt-0.5">اختبار تفاعلي من 10 أسئلة لقياس جاهزيتك</p>
+              </div>
+            </button>
+
+            <!-- قياس الأثر -->
+            <button onclick="navigateTo('impact')" class="safe-card p-5 text-right hover:border-brand-gold flex items-center gap-4 cursor-pointer group">
+              <div class="w-14 h-14 rounded-2xl bg-brand-mint border border-emerald-200 flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">
+                📊
+              </div>
+              <div>
+                <h4 class="font-black text-brand-darkest text-base sm:text-lg">أثر المبادرة</h4>
+                <p class="text-xs text-gray-600 mt-0.5">القياس القبلي والبعدي ونسبة التحسن المعرفي</p>
+              </div>
+            </button>
+
+            <!-- شواهد رحلة الأمان -->
+            <button onclick="navigateTo('evidence')" class="safe-card p-5 text-right hover:border-brand-gold flex items-center gap-4 cursor-pointer group">
+              <div class="w-14 h-14 rounded-2xl bg-brand-mint border border-emerald-200 flex items-center justify-center text-2xl shrink-0 group-hover:scale-110 transition-transform">
+                📁
+              </div>
+              <div>
+                <h4 class="font-black text-brand-darkest text-base sm:text-lg">شواهد رحلة الأمان</h4>
+                <p class="text-xs text-gray-600 mt-0.5">معرض الصور والأنشطة والملفات التوثيقية</p>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- 3. القسم الأول: «رحلة الأمان 🗺️»                      -->
+      <!-- ===================================================== -->
+      <div id="view-journey" class="hidden space-y-6">
+        
+        <!-- شريط العودة -->
+        <div class="flex items-center justify-between">
+          <button onclick="navigateTo('dashboard')" class="inline-flex items-center gap-2 text-sm font-bold text-brand-emerald hover:underline cursor-pointer">
+            <span>→ العودة إلى لوحة التحكم</span>
+          </button>
+          <span class="text-xs font-bold bg-brand-mint text-brand-emerald px-3 py-1 rounded-full border border-emerald-200">
+            القسم الأول: رحلة الأمان 🗺️
+          </span>
+        </div>
+
+        <!-- بطاقة تسجيل الطالبة (تظهر قبل بدء الرحلة أو لتغيير الطالبة) -->
+        <div id="journey-register-card" class="safe-card p-6 sm:p-8 max-w-3xl mx-auto">
+          <div class="flex flex-col md:flex-row items-center gap-6 mb-6">
+            <!-- رسم كرتوني لطالبة صغيرة ترتدي الزي المدرسي السعودي الابتدائي -->
+            <div class="w-36 h-36 sm:w-44 sm:h-44 shrink-0 rounded-3xl bg-gradient-to-b from-brand-mint to-emerald-100 border-2 border-brand-gold/40 flex items-center justify-center p-2 shadow-inner">
+              <svg viewBox="0 0 180 180" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <!-- خلفية دائرية ناعمة -->
+                <circle cx="90" cy="90" r="82" fill="#ecfdf5" />
+                <!-- حجاب أبيض مدرسي مرتب -->
+                <path d="M52 76 C52 44, 128 44, 128 76 L134 128 C115 138, 65 138, 46 128 Z" fill="#ffffff" stroke="#d1d5db" stroke-width="2"/>
+                <!-- الوجه -->
+                <circle cx="90" cy="80" r="27" fill="#fde6d2" />
+                <!-- العيون الودودة -->
+                <circle cx="80" cy="77" r="3.2" fill="#1f2937" />
+                <circle cx="100" cy="77" r="3.2" fill="#1f2937" />
+                <circle cx="81" cy="76" r="1" fill="#ffffff" />
+                <circle cx="101" cy="76" r="1" fill="#ffffff" />
+                <!-- ابتسامة لطيفة -->
+                <path d="M82 89 Q90 96 98 89" stroke="#b45309" stroke-width="2.5" stroke-linecap="round" fill="none" />
+                <!-- إطار الحجاب حول الوجه -->
+                <path d="M62 78 C62 53, 118 53, 118 78 C118 98, 105 108, 90 108 C75 108, 62 98, 62 78 Z" fill="none" stroke="#e5e7eb" stroke-width="3" />
+                <!-- المريول المدرسي السعودي (أخضر زمردي أنيق مع قميص أبيض) -->
+                <path d="M54 124 L126 124 L136 172 L44 172 Z" fill="#059669" />
+                <!-- ياقة القميص الأبيض -->
+                <polygon points="75,112 90,126 105,112 100,108 90,117 80,108" fill="#ffffff" />
+                <!-- أزرار المريول الذهبية -->
+                <circle cx="90" cy="138" r="2.8" fill="#d4af37" />
+                <circle cx="90" cy="152" r="2.8" fill="#d4af37" />
+                <!-- شارة بطلة الأمان على الصدر -->
+                <circle cx="110" cy="138" r="7" fill="#d4af37" />
+                <text x="110" y="141" text-anchor="middle" font-size="8" fill="#041f15" font-weight="bold">★</text>
+              </svg>
+            </div>
+
+            <div class="text-center md:text-right">
+              <h2 class="text-2xl sm:text-3xl font-black text-brand-darkest mb-2">
+                أهلًا بك يا متأهبة 👋
+              </h2>
+              <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+                مهمة تأهب تفاعلية تعيشين فيها لحظة الاستعداد للإنذار المبكر خطوة بخطوة، وتتعلمين كيف تحمين نفسك والآخرين.
+              </p>
+            </div>
+          </div>
+
+          <!-- نموذج تسجيل المشاركة -->
+          <form id="journey-form" onsubmit="handleJourneyStart(event)" class="bg-brand-ivory p-5 sm:p-6 rounded-2xl border border-emerald-200/80 space-y-4">
+            <h3 class="font-extrabold text-brand-dark text-base sm:text-lg border-b border-emerald-200 pb-2">
+              سجّلي بياناتك للبدء وحفظ إنجازك:
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-brand-dark mb-1.5">اسم الطالبة الثلاثي *</label>
+                <input type="text" id="student-name" required placeholder="مثال: سارة أحمد الغامدي" class="w-full px-4 py-3 rounded-xl bg-white border border-emerald-300 focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 outline-none text-sm font-semibold" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-brand-dark mb-1.5">الصف الدراسي *</label>
+                <select id="student-grade" required class="w-full px-4 py-3 rounded-xl bg-white border border-emerald-300 focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 outline-none text-sm font-semibold">
+                  <option value="">اختاري الصف...</option>
+                  <option value="الأول الابتدائي">الأول الابتدائي</option>
+                  <option value="الثاني الابتدائي">الثاني الابتدائي</option>
+                  <option value="الثالث الابتدائي">الثالث الابتدائي</option>
+                  <option value="الرابع الابتدائي">الرابع الابتدائي</option>
+                  <option value="الخامس الابتدائي">الخامس الابتدائي</option>
+                  <option value="السادس الابتدائي">السادس الابتدائي</option>
+                  <option value="منسوبات المدرسة">منسوبات المدرسة</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-brand-dark mb-1.5">الفصل *</label>
+                <input type="text" id="student-class" required placeholder="مثال: 1 أو أ" class="w-full px-4 py-3 rounded-xl bg-white border border-emerald-300 focus:border-brand-emerald focus:ring-2 focus:ring-brand-emerald/20 outline-none text-sm font-semibold" />
+              </div>
+            </div>
+
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <p class="text-xs text-emerald-800">
+                🔒 تُحفظ بياناتك بأمان لربطها بنتائج الرحلة والاختبار التفاعلي.
+              </p>
+              <button type="submit" id="start-journey-btn" class="w-full sm:w-auto btn-emerald text-white font-extrabold px-8 py-3.5 rounded-xl text-base cursor-pointer">
+                ابدئي رحلتي 🚀
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- مساحة مراحل الرحلة التفاعلية (تظهر بعد التسجيل) -->
+        <div id="journey-stages-container" class="hidden space-y-6 max-w-4xl mx-auto">
+          
+          <!-- شريط تقدم الطالبة -->
+          <div class="safe-card p-4 sm:p-5 bg-white">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="px-3 py-1 rounded-lg bg-brand-emerald text-white text-xs font-bold" id="journey-student-badge"></span>
+                <button onclick="resetStudentRegistration()" class="text-xs text-emerald-700 underline hover:text-brand-dark cursor-pointer">تغيير الاسم</button>
+              </div>
+              <span class="text-xs sm:text-sm font-extrabold text-brand-emerald" id="journey-progress-text">المرحلة 1 من 5 (20%)</span>
+            </div>
+
+            <!-- شريط التقدم المرئي -->
+            <div class="w-full h-3.5 bg-emerald-100 rounded-full overflow-hidden p-0.5">
+              <div id="journey-progress-bar" class="h-full bg-gradient-to-l from-brand-light to-brand-emerald rounded-full transition-all duration-500" style="width: 20%;"></div>
+            </div>
+
+            <!-- أزرار التنقل السريع بين المراحل -->
+            <div class="grid grid-cols-5 gap-1.5 sm:gap-2 mt-4">
+              <button onclick="goToJourneyStage(1)" id="stage-tab-1" class="py-2 px-1 rounded-xl text-[11px] sm:text-xs font-bold border transition cursor-pointer">1. أعرف الإنذار</button>
+              <button onclick="goToJourneyStage(2)" id="stage-tab-2" class="py-2 px-1 rounded-xl text-[11px] sm:text-xs font-bold border transition cursor-pointer">2. أستعد</button>
+              <button onclick="goToJourneyStage(3)" id="stage-tab-3" class="py-2 px-1 rounded-xl text-[11px] sm:text-xs font-bold border transition cursor-pointer">3. أتصرف</button>
+              <button onclick="goToJourneyStage(4)" id="stage-tab-4" class="py-2 px-1 rounded-xl text-[11px] sm:text-xs font-bold border transition cursor-pointer">4. المواقف</button>
+              <button onclick="goToJourneyStage(5)" id="stage-tab-5" class="py-2 px-1 rounded-xl text-[11px] sm:text-xs font-bold border transition cursor-pointer">5. الأمان</button>
+            </div>
+          </div>
+
+          <!-- المرحلة الأولى: أعرف الإنذار المبكر -->
+          <div id="stage-content-1" class="safe-card p-6 sm:p-8 space-y-6">
+            <div class="flex flex-col sm:flex-row items-center gap-6 bg-brand-mint/70 p-5 rounded-2xl border border-emerald-200">
+              <!-- رسم توضيحي لجرس إنذار مدرسي -->
+              <div class="w-28 h-28 shrink-0 bg-white rounded-2xl border border-brand-gold/40 flex items-center justify-center shadow-sm">
+                <svg viewBox="0 0 120 120" class="w-24 h-24">
+                  <circle cx="60" cy="60" r="46" fill="#fefce8" stroke="#d4af37" stroke-width="3"/>
+                  <circle cx="60" cy="60" r="35" fill="#dc2626"/>
+                  <circle cx="60" cy="60" r="10" fill="#fca5a5"/>
+                  <path d="M22 35 Q12 60 22 85" stroke="#059669" stroke-width="4" stroke-linecap="round" fill="none"/>
+                  <path d="M98 35 Q108 60 98 85" stroke="#059669" stroke-width="4" stroke-linecap="round" fill="none"/>
+                </svg>
+              </div>
+              <div>
+                <span class="text-xs font-extrabold text-brand-emerald uppercase">المرحلة الأولى: أعرف الإنذار المبكر</span>
+                <h3 class="text-xl sm:text-2xl font-black text-brand-darkest mt-1 mb-2">ما المقصود بالإنذار المبكر؟</h3>
+                <p class="text-gray-700 text-sm sm:text-base leading-relaxed">
+                  الإنذار المبكر هو تنبيه يساعدنا على الاستعداد والتصرف الصحيح عند وجود خطر محتمل، ويمنحنا فرصة لحماية أنفسنا والآخرين.
+                </p>
+              </div>
+            </div>
+
+            <!-- سؤال تفاعلي -->
+            <div class="bg-brand-ivory p-5 rounded-2xl border border-emerald-200 space-y-3">
+              <h4 class="font-extrabold text-brand-dark text-base sm:text-lg">
+                🤔 سؤال تفاعلي: لماذا نحتاج إلى الإنذار المبكر؟
+              </h4>
+              <div class="space-y-2.5" id="stage1-options">
+                <button onclick="checkStage1Answer(this, true)" class="w-full text-right p-3.5 rounded-xl bg-white border-2 border-emerald-200 hover:border-brand-emerald font-bold text-sm sm:text-base transition cursor-pointer">
+                  أ- لمعرفة وجود خطر والاستعداد.
+                </button>
+                <button onclick="checkStage1Answer(this, false)" class="w-full text-right p-3.5 rounded-xl bg-white border-2 border-emerald-200 hover:border-brand-emerald font-bold text-sm sm:text-base transition cursor-pointer">
+                  ب- للعب والمرح.
+                </button>
+                <button onclick="checkStage1Answer(this, false)" class="w-full text-right p-3.5 rounded-xl bg-white border-2 border-emerald-200 hover:border-brand-emerald font-bold text-sm sm:text-base transition cursor-pointer">
+                  ج- لمغادرة الفصل دون تعليمات.
+                </button>
+              </div>
+              <div id="stage1-feedback" class="hidden p-3.5 rounded-xl text-sm font-bold"></div>
+            </div>
+
+            <div class="flex justify-end">
+              <button onclick="goToJourneyStage(2)" class="btn-emerald text-white font-bold px-6 py-3 rounded-xl cursor-pointer">
+                الانتقال إلى المرحلة الثانية ←
+              </button>
+            </div>
+          </div>
+
+          <!-- المرحلة الثانية: أستعد قبل الإنذار -->
+          <div id="stage-content-2" class="hidden safe-card p-6 sm:p-8 space-y-6">
+            <div>
+              <span class="text-xs font-extrabold text-brand-emerald">المرحلة الثانية: أستعد قبل الإنذار</span>
+              <h3 class="text-xl sm:text-2xl font-black text-brand-darkest mt-1">الاستعداد يبدأ قبل حدوث الخطر</h3>
+              <p class="text-sm text-gray-600 mt-1">تعرّفي على مهارات الاستعداد الست التي تجعلكِ جاهزة دائماً:</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="stage2-cards">
+              <!-- تُملأ برمجياً ببطاقات مصورة للمهارات الست -->
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <button onclick="goToJourneyStage(1)" class="px-5 py-2.5 rounded-xl border border-emerald-300 text-brand-dark font-bold text-sm cursor-pointer">→ السابق</button>
+              <button onclick="goToJourneyStage(3)" class="btn-emerald text-white font-bold px-6 py-3 rounded-xl cursor-pointer">المرحلة الثالثة ←</button>
+            </div>
+          </div>
+
+          <!-- المرحلة الثالثة: أتصرف عند سماع الإنذار -->
+          <div id="stage-content-3" class="hidden safe-card p-6 sm:p-8 space-y-6">
+            <div>
+              <span class="text-xs font-extrabold text-brand-emerald">المرحلة الثالثة: أتصرف عند سماع الإنذار</span>
+              <h3 class="text-xl sm:text-2xl font-black text-brand-darkest mt-1">سمعت جرس الإنذار.. ماذا أفعل؟</h3>
+              <p class="text-sm text-gray-600 mt-1">اتّبعي هذه الخطوات السبع بالترتيب وهدوء:</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5" id="stage3-steps">
+              <!-- تُملأ برمجياً بالخطوات السبع المرقمة مع الرسوم الكرتونية -->
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <button onclick="goToJourneyStage(2)" class="px-5 py-2.5 rounded-xl border border-emerald-300 text-brand-dark font-bold text-sm cursor-pointer">→ السابق</button>
+              <button onclick="goToJourneyStage(4)" class="btn-emerald text-white font-bold px-6 py-3 rounded-xl cursor-pointer">المرحلة الرابعة ←</button>
+            </div>
+          </div>
+
+          <!-- المرحلة الرابعة: أتعرف على التصرف الصحيح (4 مواقف تفاعلية) -->
+          <div id="stage-content-4" class="hidden safe-card p-6 sm:p-8 space-y-6">
+            <div>
+              <span class="text-xs font-extrabold text-brand-emerald">المرحلة الرابعة: أتعرف على التصرف الصحيح</span>
+              <h3 class="text-xl sm:text-2xl font-black text-brand-darkest mt-1">مواقف ذكية.. اختاري التصرف الصحيح</h3>
+              <p class="text-sm text-gray-600 mt-1">اقرئي كل موقف بعناية واختاري الإجابة المناسبة:</p>
+            </div>
+
+            <div class="space-y-4" id="stage4-scenarios">
+              <!-- تُملأ برمجياً بالمواقف الأربعة -->
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <button onclick="goToJourneyStage(3)" class="px-5 py-2.5 rounded-xl border border-emerald-300 text-brand-dark font-bold text-sm cursor-pointer">→ السابق</button>
+              <button onclick="goToJourneyStage(5)" class="btn-emerald text-white font-bold px-6 py-3 rounded-xl cursor-pointer">المرحلة الخامسة ←</button>
+            </div>
+          </div>
+
+          <!-- المرحلة الخامسة: أصل إلى الأمان -->
+          <div id="stage-content-5" class="hidden safe-card p-6 sm:p-8 space-y-6">
+            <div class="flex flex-col md:flex-row items-center gap-6 bg-brand-mint p-5 rounded-2xl border border-emerald-200">
+              <!-- رسم توضيحي لطالبات يقفن في نقطة تجمع منظمة -->
+              <div class="w-44 h-36 shrink-0 bg-white rounded-2xl border border-brand-gold/50 p-2 flex items-center justify-center shadow-sm">
+                <svg viewBox="0 0 200 150" class="w-full h-full">
+                  <rect x="0" y="110" width="200" height="40" fill="#d1fae5"/>
+                  <!-- لوحة نقطة التجمع -->
+                  <rect x="148" y="30" width="6" height="85" fill="#065f46"/>
+                  <rect x="122" y="16" width="58" height="32" rx="6" fill="#059669" stroke="#d4af37" stroke-width="2"/>
+                  <text x="151" y="36" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">نقطة التجمع</text>
+                  <!-- 3 طالبات يقفن بانتظام -->
+                  <g transform="translate(28, 52)">
+                    <circle cx="15" cy="14" r="10" fill="#fde6d2"/>
+                    <path d="M5 14 C5 2, 25 2, 25 14 L27 28 L3 28 Z" fill="#ffffff"/>
+                    <circle cx="15" cy="14" r="7" fill="#fde6d2"/>
+                    <rect x="6" y="28" width="18" height="32" rx="4" fill="#059669"/>
+                  </g>
+                  <g transform="translate(62, 52)">
+                    <circle cx="15" cy="14" r="10" fill="#fde6d2"/>
+                    <path d="M5 14 C5 2, 25 2, 25 14 L27 28 L3 28 Z" fill="#ffffff"/>
+                    <circle cx="15" cy="14" r="7" fill="#fde6d2"/>
+                    <rect x="6" y="28" width="18" height="32" rx="4" fill="#059669"/>
+                  </g>
+                  <g transform="translate(96, 52)">
+                    <circle cx="15" cy="14" r="10" fill="#fde6d2"/>
+                    <path d="M5 14 C5 2, 25 2, 25 14 L27 28 L3 28 Z" fill="#ffffff"/>
+                    <circle cx="15" cy="14" r="7" fill="#fde6d2"/>
+                    <rect x="6" y="28" width="18" height="32" rx="4" fill="#059669"/>
+                  </g>
+                </svg>
+              </div>
+
+              <div class="space-y-2">
+                <span class="text-xs font-extrabold text-brand-emerald">المرحلة الخامسة: أصل إلى الأمان</span>
+                <h3 class="text-xl sm:text-2xl font-black text-brand-darkest">وصلت إلى نقطة التجمع الآمنة</h3>
+                <ul class="space-y-1.5 text-sm sm:text-base text-gray-700 font-semibold">
+                  <li class="flex items-center gap-2"><span class="text-brand-emerald">✔</span> ألتزم بمكان التجمع.</li>
+                  <li class="flex items-center gap-2"><span class="text-brand-emerald">✔</span> أكون مع مجموعتي.</li>
+                  <li class="flex items-center gap-2"><span class="text-brand-emerald">✔</span> أستمع إلى تعليمات المعلمة.</li>
+                  <li class="flex items-center gap-2"><span class="text-brand-emerald">✔</span> لا أغادر المكان دون إذن.</li>
+                  <li class="flex items-center gap-2"><span class="text-brand-emerald">✔</span> أبلغ المعلمة إذا لاحظت غياب إحدى زميلاتي دون أن أترك مكاني.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- زر إنهاء الرحلة -->
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+              <button onclick="goToJourneyStage(4)" class="px-5 py-2.5 rounded-xl border border-emerald-300 text-brand-dark font-bold text-sm cursor-pointer">→ المرحلة السابقة</button>
+              <button onclick="completeSafetyJourney()" id="complete-journey-btn" class="w-full sm:w-auto btn-emerald text-white font-black text-lg px-8 py-4 rounded-2xl border border-brand-gold/60 cursor-pointer">
+                أنهيت رحلة الأمان 🏆
+              </button>
+            </div>
+
+            <!-- بطاقة التهنئة بعد الإكمال -->
+            <div id="journey-celebration-box" class="hidden rounded-3xl bg-gradient-to-br from-brand-darkest to-brand-deep text-white p-6 sm:p-8 text-center border-2 border-brand-gold shadow-xl space-y-4">
+              <div class="text-5xl">🌟🏆🌟</div>
+              <h4 class="text-2xl sm:text-3xl font-black text-brand-gold">أحسنتِ يا بطلة الأمان! 🌟</h4>
+              <p class="text-emerald-100 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
+                لقد أكملتِ رحلة التأهب، وأصبحتِ أكثر معرفة بالتصرفات الصحيحة عند الإنذار المبكر.
+              </p>
+              <div class="flex flex-wrap justify-center gap-3 pt-2">
+                <button onclick="navigateTo('quiz')" class="btn-emerald text-white font-bold px-6 py-3 rounded-xl cursor-pointer">
+                  اختبري معلوماتك الآن 🧠
+                </button>
+                <button onclick="navigateTo('dashboard')" class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold cursor-pointer">
+                  العودة للوحة التحكم
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- 4. القسم الثاني: «ركن التوعية 📚»                     -->
+      <!-- ===================================================== -->
+      <div id="view-awareness" class="hidden space-y-6">
+        <div class="flex items-center justify-between">
+          <button onclick="navigateTo('dashboard')" class="inline-flex items-center gap-2 text-sm font-bold text-brand-emerald hover:underline cursor-pointer">
+            <span>→ العودة إلى لوحة التحكم</span>
+          </button>
+          <span class="text-xs font-bold bg-brand-mint text-brand-emerald px-3 py-1 rounded-full border border-emerald-200">
+            القسم الثاني: ركن التوعية 📚
+          </span>
+        </div>
+
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <h2 class="text-2xl sm:text-3xl font-black text-brand-darkest">ركن التوعية 📚</h2>
+          <p class="text-brand-emerald font-bold text-base sm:text-lg">
+            «معرفة بسيطة اليوم.. تحمي حياتنا غدًا.»
+          </p>
+        </div>
+
+        <!-- شبكة البطاقات التوعوية الـ 10 -->
+        <div id="awareness-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- تُولد تلقائياً بواسطة JS -->
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- 5. القسم الثالث: «جدارية الأمان 🧱»                   -->
+      <!-- ===================================================== -->
+      <div id="view-wall" class="hidden space-y-6">
+        <div class="flex items-center justify-between">
+          <button onclick="navigateTo('dashboard')" class="inline-flex items-center gap-2 text-sm font-bold text-brand-emerald hover:underline cursor-pointer">
+            <span>→ العودة إلى لوحة التحكم</span>
+          </button>
+          <span class="text-xs font-bold bg-brand-mint text-brand-emerald px-3 py-1 rounded-full border border-emerald-200">
+            القسم الثالث: جدارية الأمان 🧱
+          </span>
+        </div>
+
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <h2 class="text-2xl sm:text-3xl font-black text-brand-darkest">جدارية الأمان 🧱</h2>
+          <p class="text-brand-emerald font-bold text-base sm:text-lg">
+            «بمشاركتك نصنع بيئة مدرسية أكثر أمانًا.»
+          </p>
+        </div>
+
+        <!-- نموذج إضافة مشاركة جديدة للجدارية -->
+        <div class="safe-card p-6 sm:p-7 max-w-3xl mx-auto bg-white">
+          <h3 class="text-lg sm:text-xl font-black text-brand-darkest mb-4 flex items-center gap-2">
+            <span>✍️</span>
+            <span>أضيفي مشاركتك أو رسمتك التوعوية</span>
+          </h3>
+
+          <form id="wall-post-form" onsubmit="submitWallPost(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-brand-dark mb-1">اسم الطالبة *</label>
+                <input type="text" id="wall-name" required placeholder="اكتبي اسمك الجميل" class="w-full px-4 py-2.5 rounded-xl bg-brand-ivory border border-emerald-300 focus:border-brand-emerald outline-none text-sm font-semibold" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-brand-dark mb-1">الصف والفصل *</label>
+                <select id="wall-grade" required class="w-full px-4 py-2.5 rounded-xl bg-brand-ivory border border-emerald-300 focus:border-brand-emerald outline-none text-sm font-semibold">
+                  <option value="">اختاري الصف...</option>
+                  <option value="الأول الابتدائي">الأول الابتدائي</option>
+                  <option value="الثاني الابتدائي">الثاني الابتدائي</option>
+                  <option value="الثالث الابتدائي">الثالث الابتدائي</option>
+                  <option value="الرابع الابتدائي">الرابع الابتدائي</option>
+                  <option value="الخامس الابتدائي">الخامس الابتدائي</option>
+                  <option value="السادس الابتدائي">السادس الابتدائي</option>
+                  <option value="منسوبات المدرسة">منسوبات المدرسة</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-dark mb-1">عنوان المشاركة *</label>
+              <input type="text" id="wall-title" required placeholder="مثال: الهدوء سر النجاة" class="w-full px-4 py-2.5 rounded-xl bg-brand-ivory border border-emerald-300 focus:border-brand-emerald outline-none text-sm font-semibold" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-dark mb-1">رسالة توعوية قصيرة *</label>
+              <textarea id="wall-message" rows="3" required placeholder="اكتبي نصيحة لزميلاتك حول التصرف الآمن عند سماع الإنذار..." class="w-full px-4 py-2.5 rounded-xl bg-brand-ivory border border-emerald-300 focus:border-brand-emerald outline-none text-sm font-semibold"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-dark mb-1">إرفاق صورة أو رسم توعوي من عمل الطالبة (اختياري)</label>
+              <input type="file" id="wall-image" accept="image/*" class="w-full text-xs text-gray-600 file:ml-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-brand-mint file:text-brand-emerald hover:file:bg-emerald-100 cursor-pointer" />
+              <p class="text-[11px] text-gray-500 mt-1">تُضغط الصورة تلقائياً وتُرسل للإدارة لاعتمادها قبل النشر.</p>
+            </div>
+
+            <div class="pt-1 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <span class="text-xs text-amber-700 font-semibold bg-brand-goldLight px-3 py-1.5 rounded-xl border border-brand-gold/40">
+                🛡️ تخضع جميع المشاركات لمراجعة الإدارة قبل ظهورها في الجدارية.
+              </span>
+              <button type="submit" id="wall-submit-btn" class="w-full sm:w-auto btn-emerald text-white font-extrabold px-7 py-3 rounded-xl cursor-pointer">
+                إرسال المشاركة 📤
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- أدوات البحث والتصفية للجدارية -->
+        <div class="safe-card p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="w-full sm:w-1/2 relative">
+            <input type="text" id="wall-search" oninput="renderApprovedWallPosts()" placeholder="🔍 ابحثي باسم الطالبة أو عنوان المشاركة..." class="w-full px-4 py-2.5 rounded-xl bg-brand-ivory border border-emerald-200 focus:border-brand-emerald outline-none text-sm" />
+          </div>
+          <div class="w-full sm:w-auto flex items-center gap-2">
+            <select id="wall-filter-grade" onchange="renderApprovedWallPosts()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-brand-ivory border border-emerald-200 text-sm font-bold text-brand-dark outline-none">
+              <option value="all">جميع الصفوف</option>
+              <option value="الأول الابتدائي">الأول الابتدائي</option>
+              <option value="الثاني الابتدائي">الثاني الابتدائي</option>
+              <option value="الثالث الابتدائي">الثالث الابتدائي</option>
+              <option value="الرابع الابتدائي">الرابع الابتدائي</option>
+              <option value="الخامس الابتدائي">الخامس الابتدائي</option>
+              <option value="السادس الابتدائي">السادس الابتدائي</option>
+              <option value="منسوبات المدرسة">منسوبات المدرسة</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- شبكة المشاركات المعتمدة -->
+        <div id="wall-posts-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- تُملأ تلقائياً من قاعدة البيانات -->
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- 6. الاختبار التفاعلي «ماذا أعرف عن الأمان؟ 🧠»          -->
+      <!-- ===================================================== -->
+      <div id="view-quiz" class="hidden space-y-6 max-w-3xl mx-auto">
+        <div class="flex items-center justify-between">
+          <button onclick="navigateTo('dashboard')" class="inline-flex items-center gap-2 text-sm font-bold text-brand-emerald hover:underline cursor-pointer">
+            <span>→ العودة إلى لوحة التحكم</span>
+          </button>
+          <span class="text-xs font-bold bg-brand-goldLight text-amber-800 px-3 py-1 rounded-full border border-brand-gold/40">
+            الاختبار التفاعلي 🧠
+          </span>
+        </div>
+
+        <div class="safe-card p-6 sm:p-8">
+          <!-- مقدمة الاختبار -->
+          <div id="quiz-intro" class="text-center space-y-4">
+            <div class="w-20 h-20 mx-auto rounded-3xl bg-brand-mint border-2 border-brand-gold flex items-center justify-center text-4xl">
+              🧠
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black text-brand-darkest">ماذا أعرف عن الأمان؟</h2>
+            <p class="text-gray-600 text-sm sm:text-base max-w-md mx-auto">
+              اختبري معلوماتك واكتشفي مدى استعدادك للتصرف الصحيح من خلال 10 أسئلة تفاعلية ممتعة.
+            </p>
+
+            <!-- حقل الاسم والصف في حال لم تسجل الطالبة مسبقاً -->
+            <div id="quiz-student-fields" class="max-w-md mx-auto bg-brand-ivory p-4 rounded-2xl border border-emerald-200 text-right space-y-3">
+              <div>
+                <label class="block text-xs font-bold text-brand-dark mb-1">اسم الطالبة *</label>
+                <input type="text" id="quiz-student-name" placeholder="اكتبي اسمك لحفظ نتيجتك" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-emerald-300 text-sm font-semibold outline-none" />
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-brand-dark mb-1">الصف الدراسي *</label>
+                <select id="quiz-student-grade" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-emerald-300 text-sm font-semibold outline-none">
+                  <option value="">اختاري الصف...</option>
+                  <option value="الأول الابتدائي">الأول الابتدائي</option>
+                  <option value="الثاني الابتدائي">الثاني الابتدائي</option>
+                  <option value="الثالث الابتدائي">الثالث الابتدائي</option>
+                  <option value="الرابع الابتدائي">الرابع الابتدائي</option>
+                  <option value="الخامس الابتدائي">الخامس الابتدائي</option>
+                  <option value="السادس الابتدائي">السادس الابتدائي</option>
+                  <option value="منسوبات المدرسة">منسوبات المدرسة</option>
+                </select>
+              </div>
+            </div>
+
+            <button onclick="startQuiz()" class="btn-emerald text-white font-extrabold text-lg px-8 py-3.5 rounded-2xl cursor-pointer">
+              ابدئي الاختبار الآن 🚀
+            </button>
+          </div>
+
+          <!-- شاشة السؤال الواحد -->
+          <div id="quiz-active" class="hidden space-y-6">
+            <div>
+              <div class="flex items-center justify-between text-xs sm:text-sm font-extrabold text-brand-emerald mb-2">
+                <span id="quiz-counter">السؤال 1 من 10</span>
+                <span id="quiz-score-live">النقاط: 0</span>
+              </div>
+              <div class="w-full h-3 bg-emerald-100 rounded-full overflow-hidden">
+                <div id="quiz-progress-bar" class="h-full bg-brand-emerald transition-all duration-300" style="width: 10%;"></div>
+              </div>
+            </div>
+
+            <div class="bg-brand-ivory p-5 sm:p-6 rounded-2xl border border-emerald-200">
+              <h3 id="quiz-question-text" class="text-lg sm:text-xl font-black text-brand-darkest leading-relaxed mb-4"></h3>
+              <div id="quiz-options-list" class="space-y-3"></div>
+            </div>
+
+            <div id="quiz-feedback-msg" class="hidden p-4 rounded-xl text-sm font-bold"></div>
+
+            <div class="flex justify-end">
+              <button id="quiz-next-btn" onclick="nextQuizQuestion()" disabled class="btn-emerald disabled:opacity-40 disabled:pointer-events-none text-white font-bold px-7 py-3 rounded-xl cursor-pointer">
+                السؤال التالي ←
+              </button>
+            </div>
+          </div>
+
+          <!-- بطاقة النتيجة النهائية -->
+          <div id="quiz-result" class="hidden text-center space-y-5">
+            <div class="rounded-3xl bg-gradient-to-br from-brand-darkest via-brand-dark to-brand-deep text-white p-6 sm:p-8 border-2 border-brand-gold shadow-xl space-y-3">
+              <div class="text-5xl">🏅</div>
+              <span class="inline-block px-4 py-1 rounded-full bg-brand-gold/20 border border-brand-gold text-brand-gold font-extrabold text-sm">
+                بطلة الأمان
+              </span>
+              <h3 id="quiz-result-name" class="text-2xl font-black text-white"></h3>
+              <div class="flex items-center justify-center gap-6 py-2">
+                <div class="bg-white/10 px-5 py-3 rounded-2xl">
+                  <div class="text-xs text-emerald-200">الدرجة</div>
+                  <div id="quiz-result-score" class="text-3xl font-black text-brand-gold">10 / 10</div>
+                </div>
+                <div class="bg-white/10 px-5 py-3 rounded-2xl">
+                  <div class="text-xs text-emerald-200">النسبة المئوية</div>
+                  <div id="quiz-result-percent" class="text-3xl font-black text-brand-light">100%</div>
+                </div>
+              </div>
+              <p id="quiz-result-message" class="text-emerald-100 text-sm sm:text-base max-w-md mx-auto leading-relaxed"></p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3">
+              <button onclick="restartQuiz()" class="btn-emerald text-white font-bold px-6 py-3 rounded-xl cursor-pointer">
+                إعادة الاختبار 🔄
+              </button>
+              <button onclick="navigateTo('dashboard')" class="px-6 py-3 rounded-xl border border-emerald-300 text-brand-dark font-bold cursor-pointer">
+                العودة للرئيسية
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- 7. قسم «أثر المبادرة 📊» (القياس القبلي والبعدي)        -->
+      <!-- ===================================================== -->
+      <div id="view-impact" class="hidden space-y-6">
+        <div class="flex items-center justify-between">
+          <button onclick="navigateTo('dashboard')" class="inline-flex items-center gap-2 text-sm font-bold text-brand-emerald hover:underline cursor-pointer">
+            <span>→ العودة إلى لوحة التحكم</span>
+          </button>
+          <span class="text-xs font-bold bg-brand-mint text-brand-emerald px-3 py-1 rounded-full border border-emerald-200">
+            قياس الأثر المعرفي والتوعوي 📊
+          </span>
+        </div>
+
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <h2 class="text-2xl sm:text-3xl font-black text-brand-darkest">أثر المبادرة</h2>
+          <p class="text-gray-600 text-sm sm:text-base">
+            استبانة قياس الوعي المعرفي القبلي والبعدي لتقييم تطور معرفة الطالبات بإجراءات السلامة والتأهب للإنذار المبكر.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- نموذج تعبئة الاستبانة -->
+          <div class="safe-card p-6 space-y-4">
+            <h3 class="text-lg font-black text-brand-darkest border-b border-emerald-100 pb-3">
+              📝 شاركي في قياس الوعي المعرفي
+            </h3>
+
+            <form id="impact-form" onsubmit="submitImpactSurvey(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-bold text-brand-dark mb-1">نوع القياس *</label>
+                  <select id="impact-type" required class="w-full px-3.5 py-2.5 rounded-xl bg-brand-ivory border border-emerald-300 text-sm font-bold outline-none">
+                    <option value="pre">قياس قبلي (قبل المبادرة)</option>
+                    <option value="post">قياس بعدي (بعد إتمام الرحلة)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-brand-dark mb-1">اسم الطالبة / المشاركة *</label>
+                  <input type="text" id="impact-name" required placeholder="الاسم" class="w-full px-3.5 py-2.5 rounded-xl bg-brand-ivory border border-emerald-300 text-sm font-semibold outline-none" />
+                </div>
+              </div>
+
+              <div class="space-y-3 bg-brand-ivory p-4 rounded-2xl border border-emerald-200">
+                <p class="text-xs font-bold text-emerald-800">قيّمي مدى معرفتك بكل مؤشر من 1 (ضعيف) إلى 5 (ممتاز):</p>
+                
+                <!-- المؤشرات الخمسة -->
+                <div class="space-y-3" id="impact-indicators-inputs">
+                  <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                      <span>1. معرفة معنى الإنذار المبكر</span>
+                      <span id="val-ind-1" class="text-brand-emerald">3 / 5</span>
+                    </div>
+                    <input type="range" id="ind-1" min="1" max="5" value="3" oninput="document.getElementById('val-ind-1').innerText = this.value + ' / 5'" class="w-full accent-brand-emerald cursor-pointer" />
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                      <span>2. التعرف على مخارج الطوارئ</span>
+                      <span id="val-ind-2" class="text-brand-emerald">3 / 5</span>
+                    </div>
+                    <input type="range" id="ind-2" min="1" max="5" value="3" oninput="document.getElementById('val-ind-2').innerText = this.value + ' / 5'" class="w-full accent-brand-emerald cursor-pointer" />
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                      <span>3. معرفة مسار الإخلاء</span>
+                      <span id="val-ind-3" class="text-brand-emerald">3 / 5</span>
+                    </div>
+                    <input type="range" id="ind-3" min="1" max="5" value="3" oninput="document.getElementById('val-ind-3').innerText = this.value + ' / 5'" class="w-full accent-brand-emerald cursor-pointer" />
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                      <span>4. التصرف بهدوء عند سماع الإنذار</span>
+                      <span id="val-ind-4" class="text-brand-emerald">3 / 5</span>
+                    </div>
+                    <input type="range" id="ind-4" min="1" max="5" value="3" oninput="document.getElementById('val-ind-4').innerText = this.value + ' / 5'" class="w-full accent-brand-emerald cursor-pointer" />
+                  </div>
+                  <div>
+                    <div class="flex justify-between text-xs font-bold mb-1">
+                      <span>5. معرفة نقطة التجمع الآمنة</span>
+                      <span id="val-ind-5" class="text-brand-emerald">3 / 5</span>
+                    </div>
+                    <input type="range" id="ind-5" min="1" max="5" value="3" oninput="document.getElementById('val-ind-5').innerText = this.value + ' / 5'" class="w-full accent-brand-emerald cursor-pointer" />
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" id="impact-submit-btn" class="w-full btn-emerald text-white font-extrabold py-3 rounded-xl cursor-pointer">
+                حفظ استبانة قياس الأثر 📊
+              </button>
+            </form>
+          </div>
+
+          <!-- الرسم البياني والمقارنة بين القبلي والبعدي -->
+          <div class="safe-card p-6 flex flex-col justify-between space-y-5">
+            <div>
+              <div class="flex items-center justify-between border-b border-emerald-100 pb-3 mb-4">
+                <h3 class="text-lg font-black text-brand-darkest">📈 مقارنة النتائج القبلية والبعدية</h3>
+                <span id="impact-improvement-badge" class="px-3 py-1 rounded-full bg-brand-mint text-brand-emerald text-xs font-black border border-emerald-300">
+                  نسبة التحسن: 0%
+                </span>
+              </div>
+
+              <!-- مفتاح الرسم البياني -->
+              <div class="flex items-center gap-4 text-xs font-bold mb-4">
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-brand-gold"></span> القياس القبلي (<span id="pre-count">0</span>)</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded bg-brand-emerald"></span> القياس البعدي (<span id="post-count">0</span>)</span>
+              </div>
+
+              <!-- أشرطة الرسم البياني للمؤشرات الخمسة -->
+              <div id="impact-chart-bars" class="space-y-4">
+                <!-- تُولد تلقائياً من البيانات الحقيقية -->
+              </div>
+            </div>
+
+            <!-- تنويه منهجي -->
+            <div class="p-3.5 rounded-xl bg-brand-goldLight border border-brand-gold/40 text-xs text-amber-900 leading-relaxed">
+              <strong>ملاحظة تربوية:</strong> تُعد هذه النتائج مؤشراً معرفياً وتوعوياً لمدى استيعاب الطالبات لإجراءات السلامة، وتُستكمل الجاهزية الميدانية بالتدريبات العملية المنتظمة في المدرسة.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- 8. قسم «شواهد رحلة الأمان 📁»                         -->
+      <!-- ===================================================== -->
+      <div id="view-evidence" class="hidden space-y-6">
+        <div class="flex items-center justify-between">
+          <button onclick="navigateTo('dashboard')" class="inline-flex items-center gap-2 text-sm font-bold text-brand-emerald hover:underline cursor-pointer">
+            <span>→ العودة إلى لوحة التحكم</span>
+          </button>
+          <span class="text-xs font-bold bg-brand-mint text-brand-emerald px-3 py-1 rounded-full border border-emerald-200">
+            التوثيق والشواهد 📁
+          </span>
+        </div>
+
+        <div class="text-center max-w-2xl mx-auto space-y-2">
+          <h2 class="text-2xl sm:text-3xl font-black text-brand-darkest">شواهد رحلة الأمان 📁</h2>
+          <p class="text-gray-600 text-sm sm:text-base">
+            معرض التوثيق الرسمي لفعاليات المبادرة، التدريبات، مشاركات الطالبات، والملفات التوعوية في المدرسة الابتدائية الثانية والعشرون بعد المائة.
+          </p>
+        </div>
+
+        <!-- أزرار تصفية نوع الشواهد -->
+        <div class="flex flex-wrap justify-center gap-2">
+          <button onclick="filterEvidence('all')" class="ev-filter-btn px-4 py-2 rounded-xl bg-brand-emerald text-white text-xs font-bold cursor-pointer">الكل</button>
+          <button onclick="filterEvidence('تنفيذ المبادرة')" class="ev-filter-btn px-4 py-2 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs font-bold cursor-pointer">صور تنفيذ المبادرة</button>
+          <button onclick="filterEvidence('الأنشطة والتدريبات')" class="ev-filter-btn px-4 py-2 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs font-bold cursor-pointer">الأنشطة والتدريبات</button>
+          <button onclick="filterEvidence('ملفات وPDF')" class="ev-filter-btn px-4 py-2 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs font-bold cursor-pointer">ملفات PDF</button>
+          <button onclick="filterEvidence('مقاطع فيديو')" class="ev-filter-btn px-4 py-2 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs font-bold cursor-pointer">مقاطع فيديو</button>
+        </div>
+
+        <!-- معرض الشواهد -->
+        <div id="evidence-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- تُملأ تلقائياً من قاعدة البيانات -->
+        </div>
+      </div>
+
+      <!-- ===================================================== -->
+      <!-- 9. لوحة إدارة المبادرة المحمية (Admin Dashboard)      -->
+      <!-- ===================================================== -->
+      <div id="view-admin" class="hidden space-y-6">
+        <div class="flex flex-wrap items-center justify-between gap-3 bg-brand-darkest text-white p-4 sm:p-5 rounded-2xl border border-brand-gold/50">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">🛡️</span>
+            <div>
+              <h2 class="text-lg sm:text-xl font-black">لوحة إدارة مبادرة «أنا أتصرف بأمان»</h2>
+              <p class="text-xs text-brand-gold">إدارة: أ. مريم الغامدي &nbsp;|&nbsp; تنفيذ: أ. تغريد علام</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="logoutAdmin()" class="px-4 py-2 rounded-xl bg-red-600/80 hover:bg-red-600 text-white text-xs font-bold cursor-pointer">
+              تسجيل خروج الإدارة
+            </button>
+            <button onclick="navigateTo('dashboard')" class="px-4 py-2 rounded-xl bg-brand-emerald text-white text-xs font-bold cursor-pointer">
+              العودة للمنصة
+            </button>
+          </div>
+        </div>
+
+        <!-- الإحصائيات الثمانية للإدارة -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+          <div class="safe-card p-4 text-center">
+            <div class="text-xs text-gray-500 font-bold">1. إجمالي المشاركات</div>
+            <div id="adm-stat-total" class="text-2xl sm:text-3xl font-black text-brand-darkest mt-1">0</div>
+          </div>
+          <div class="safe-card p-4 text-center">
+            <div class="text-xs text-gray-500 font-bold">2. أكملن الرحلة</div>
+            <div id="adm-stat-completed" class="text-2xl sm:text-3xl font-black text-brand-emerald mt-1">0</div>
+          </div>
+          <div class="safe-card p-4 text-center">
+            <div class="text-xs text-gray-500 font-bold">3. الاختبارات المنجزة</div>
+            <div id="adm-stat-quizzes" class="text-2xl sm:text-3xl font-black text-brand-darkest mt-1">0</div>
+          </div>
+          <div class="safe-card p-4 text-center">
+            <div class="text-xs text-gray-500 font-bold">4. متوسط الدرجات</div>
+            <div id="adm-stat-avg" class="text-2xl sm:text-3xl font-black text-brand-emerald mt-1">0%</div>
+          </div>
+          <div class="safe-card p-4 text-center">
+            <div class="text-xs text-gray-500 font-bold">5. مشاركات الجدارية</div>
+            <div id="adm-stat-approved-wall" class="text-2xl sm:text-3xl font-black text-brand-darkest mt-1">0</div>
+          </div>
+          <div class="safe-card p-4 text-center border-amber-300 bg-brand-goldLight/40">
+            <div class="text-xs text-amber-800 font-bold">6. بانتظار الموافقة</div>
+            <div id="adm-stat-pending-wall" class="text-2xl sm:text-3xl font-black text-amber-600 mt-1">0</div>
+          </div>
+          <div class="safe-card p-4 text-center">
+            <div class="text-xs text-gray-500 font-bold">7. الشواهد المرفوعة</div>
+            <div id="adm-stat-evidence" class="text-2xl sm:text-3xl font-black text-brand-darkest mt-1">0</div>
+          </div>
+          <div class="safe-card p-4 text-center">
+            <div class="text-xs text-gray-500 font-bold">8. نسبة الإنجاز</div>
+            <div id="adm-stat-progress" class="text-2xl sm:text-3xl font-black text-brand-emerald mt-1">0%</div>
+          </div>
+        </div>
+
+        <!-- تبويبات الإدارة -->
+        <div class="flex flex-wrap gap-2 border-b border-emerald-200 pb-3">
+          <button onclick="switchAdminTab('posts')" id="adm-tab-btn-posts" class="px-4 py-2.5 rounded-xl bg-brand-emerald text-white text-xs sm:text-sm font-bold cursor-pointer">
+            🧱 إدارة مشاركات الجدارية
+          </button>
+          <button onclick="switchAdminTab('quizzes')" id="adm-tab-btn-quizzes" class="px-4 py-2.5 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs sm:text-sm font-bold cursor-pointer">
+            🧠 نتائج الاختبارات والطالبات
+          </button>
+          <button onclick="switchAdminTab('evidence')" id="adm-tab-btn-evidence" class="px-4 py-2.5 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs sm:text-sm font-bold cursor-pointer">
+            📁 رفع الشواهد والتوثيق
+          </button>
+          <button onclick="switchAdminTab('reports')" id="adm-tab-btn-reports" class="px-4 py-2.5 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs sm:text-sm font-bold cursor-pointer">
+            📊 التقارير والتصدير (PDF / Excel)
+          </button>
+        </div>
+
+        <!-- التبويب 1: إدارة المشاركات -->
+        <div id="adm-panel-posts" class="safe-card p-5 space-y-4">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <h3 class="font-black text-brand-darkest text-base sm:text-lg">مراجعة واعتماد مشاركات الجدارية</h3>
+            <div class="flex flex-wrap gap-2 w-full sm:w-auto">
+              <input type="text" id="adm-search-post" oninput="renderAdminPosts()" placeholder="بحث باسم الطالبة..." class="px-3 py-2 rounded-xl bg-brand-ivory border border-emerald-200 text-xs outline-none" />
+              <select id="adm-filter-status" onchange="renderAdminPosts()" class="px-3 py-2 rounded-xl bg-brand-ivory border border-emerald-200 text-xs font-bold outline-none">
+                <option value="all">جميع الحالات</option>
+                <option value="pending">بانتظار الموافقة ⏳</option>
+                <option value="approved">معتمدة ✅</option>
+                <option value="rejected">مرفوضة ❌</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="adm-posts-list" class="space-y-3">
+            <!-- تُملأ تلقائياً -->
+          </div>
+        </div>
+
+        <!-- التبويب 2: إدارة الاختبارات والطالبات -->
+        <div id="adm-panel-quizzes" class="hidden safe-card p-5 space-y-4 overflow-x-auto">
+          <h3 class="font-black text-brand-darkest text-base sm:text-lg">سجل الطالبات ونتائج الاختبار التفاعلي</h3>
+          <table class="w-full text-right border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-brand-mint text-brand-darkest border-b border-emerald-200">
+                <th class="p-3">اسم الطالبة</th>
+                <th class="p-3">الصف والفصل</th>
+                <th class="p-3">حالة الرحلة</th>
+                <th class="p-3">درجة الاختبار</th>
+                <th class="p-3">النسبة</th>
+                <th class="p-3">التاريخ</th>
+              </tr>
+            </thead>
+            <tbody id="adm-students-table" class="divide-y divide-emerald-100">
+              <!-- تُملأ تلقائياً -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- التبويب 3: رفع الشواهد -->
+        <div id="adm-panel-evidence" class="hidden safe-card p-5 space-y-5">
+          <h3 class="font-black text-brand-darkest text-base sm:text-lg">رفع شاهد توثيقي جديد للمعرض</h3>
+          <form id="admin-evidence-form" onsubmit="submitAdminEvidence(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-brand-ivory p-4 rounded-2xl border border-emerald-200">
+            <div>
+              <label class="block text-xs font-bold mb-1">عنوان الشاهد *</label>
+              <input type="text" id="ev-title" required placeholder="مثال: تنفيذ خطة الإخلاء الوهمي" class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-emerald-300 text-sm outline-none" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold mb-1">تصنيف الشاهد *</label>
+              <select id="ev-category" required class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-emerald-300 text-sm font-bold outline-none">
+                <option value="تنفيذ المبادرة">تنفيذ المبادرة</option>
+                <option value="الأنشطة والتدريبات">الأنشطة والتدريبات</option>
+                <option value="ملفات وPDF">ملفات وPDF</option>
+                <option value="مقاطع فيديو">مقاطع فيديو</option>
+                <option value="نماذج الاختبارات">نماذج الاختبارات</option>
+                <option value="نتائج قياس الأثر">نتائج قياس الأثر</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2">
+        <!-- أزرار تصفية نوع الشواهد -->
+        <div class="flex flex-wrap justify-center gap-2">
+          <button onclick="filterEvidence('all')" class="ev-filter-btn px-4 py-2 rounded-xl bg-brand-emerald text-white text-xs font-bold cursor-pointer">الكل</button>
+          <button onclick="filterEvidence('تنفيذ المبادرة')" class="ev-filter-btn px-4 py-2 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs font-bold cursor-pointer">صور تنفيذ المبادرة</button>
+          <button onclick="filterEvidence('الأنشطة والتدريبات')" class="ev-filter-btn px-4 py-2 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs font-bold cursor-pointer">الأنشطة والتدريبات</button>
+          <button onclick="filterEvidence('ملفات وPDF')" class="ev-filter-btn px-4 py-2 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs font-bold cursor-pointer">ملفات PDF</button>
+          <button onclick="filterEvidence('مقاطع فيديو')" class="ev-filter-btn px-4 py-2 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs font-bold cursor-pointer">مقاطع فيديو</button>
+          <button onclick="filterEvidence('نماذج الاختبارات')" class="ev-filter-btn px-4 py-2 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs font-bold cursor-pointer">نماذج الاختبارات</button>
+          <button onclick="filterEvidence('نتائج قياس الأثر')" class="ev-filter-btn px-4 py-2 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs font-bold cursor-pointer">نتائج قياس الأثر</button>
+        </div>
+            <div>
+              <label class="block text-xs font-bold mb-1">رفع صورة الشاهد (تُضغط وتُحفظ سحابياً)</label>
+              <input type="file" id="ev-image-file" accept="image/*" class="w-full text-xs" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold mb-1">أو رابط ملف PDF / فيديو خارجي</label>
+              <input type="url" id="ev-external-url" placeholder="https://..." class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-emerald-300 text-sm outline-none" />
+            </div>
+            <div class="sm:col-span-2">
+              <button type="submit" id="ev-submit-btn" class="btn-emerald text-white font-bold px-6 py-3 rounded-xl cursor-pointer">
+                نشر الشاهد في المعرض 📤
+              </button>
+            </div>
+          </form>
+
+          <div id="adm-evidence-list" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- قائمة الشواهد المرفوعة مع زر حذف -->
+          </div>
+        </div>
+
+        <!-- التبويب 4: التقارير والتصدير -->
+        <div id="adm-panel-reports" class="hidden safe-card p-6 space-y-5">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <h3 class="font-black text-brand-darkest text-lg">التقرير التلقائي لمبادرة «أنا أتصرف بأمان»</h3>
+            <div class="flex gap-2">
+              <button onclick="exportReportExcel()" class="px-4 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer">
+                <span>تصدير Excel</span>
+                <span>📊</span>
+              </button>
+              <button onclick="window.print()" class="px-4 py-2.5 rounded-xl bg-brand-darkest hover:bg-brand-dark text-brand-gold border border-brand-gold/50 text-xs font-bold flex items-center gap-1.5 cursor-pointer">
+                <span>طباعة / حفظ PDF</span>
+                <span>🖨️</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- قالب التقرير القابل للطباعة -->
+          <div id="printable-report" class="p-6 rounded-2xl bg-brand-ivory border-2 border-brand-gold/50 space-y-4">
+            <div class="text-center border-b border-emerald-200 pb-4">
+              <p class="text-xs font-bold text-brand-emerald">المملكة العربية السعودية - وزارة التعليم</p>
+              <h4 class="text-xl font-black text-brand-darkest mt-1">المدرسة الابتدائية الثانية والعشرون بعد المائة</h4>
+              <p class="text-sm font-bold text-brand-dark mt-1">تقرير إنجاز وأثر مبادرة: «أنا أتصرف بأمان – رحلة التأهب للإنذار المبكر»</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+              <div class="p-3 bg-white rounded-xl border border-emerald-200">
+                <div class="text-xs text-gray-500">إجمالي المستفيدات</div>
+                <div id="rep-total" class="text-xl font-black text-brand-darkest">0</div>
+              </div>
+              <div class="p-3 bg-white rounded-xl border border-emerald-200">
+                <div class="text-xs text-gray-500">نسبة إكمال الرحلة</div>
+                <div id="rep-completion" class="text-xl font-black text-brand-emerald">0%</div>
+              </div>
+              <div class="p-3 bg-white rounded-xl border border-emerald-200">
+                <div class="text-xs text-gray-500">متوسط نتائج الاختبار</div>
+                <div id="rep-quiz-avg" class="text-xl font-black text-brand-emerald">0%</div>
+              </div>
+              <div class="p-3 bg-white rounded-xl border border-emerald-200">
+                <div class="text-xs text-gray-500">المشاركات التوعوية</div>
+                <div id="rep-posts" class="text-xl font-black text-brand-darkest">0</div>
+              </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl border border-emerald-200 text-xs sm:text-sm space-y-2 leading-relaxed">
+              <p><strong>مؤشر التحسن المعرفي (القبلي والبعدي):</strong> <span id="rep-impact-gain" class="text-brand-emerald font-bold">0%</span></p>
+              <p><strong>عدد الشواهد التوثيقية المعتمدة:</strong> <span id="rep-evidence-count" class="font-bold">0</span></p>
+              <p class="text-gray-600 pt-2">
+                تؤكد المؤشرات الرقمية تفاعل طالبات ومنسوبات المدرسة الابتدائية الثانية والعشرون بعد المائة مع مراحل التأهب للإنذار المبكر، وتعزيز السلوك الوقائي الآمن داخل البيئة المدرسية.
+              </p>
+            </div>
+
+            <div class="flex justify-between items-center pt-4 text-xs sm:text-sm font-bold text-brand-darkest">
+              <div>المشاركة في التنفيذ: أ. تغريد علام</div>
+              <div>مديرة المدرسة: أ. مريم الغامدي</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ========================================================= -->
+    <!-- 10. التذييل الأنيق (Footer)                               -->
+    <!-- ========================================================= -->
+    <footer class="bg-brand-darkest text-white border-t-2 border-brand-gold/50 mt-12">
+      <div class="max-w-6xl mx-auto px-4 py-8 text-center space-y-3">
+        <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-brand-deep border border-brand-gold/40 text-brand-gold text-xs font-bold">
+          <span>🇸🇦</span>
+          <span>المبادرة المدرسية التوعوية</span>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-black text-white">أنا أتصرف بأمان</h3>
+        <p class="text-brand-light font-bold text-sm sm:text-base">رحلة التأهب للإنذار المبكر</p>
+        <p class="text-emerald-100 text-xs sm:text-sm font-semibold">
+          المدرسة الابتدائية الثانية والعشرون بعد المائة
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm text-emerald-200 pt-1">
+          <span>مديرة المدرسة: <strong class="text-white">مريم الغامدي</strong></span>
+          <span class="text-brand-gold">•</span>
+          <span>مشاركة: <strong class="text-white">تغريد علام</strong></span>
+        </div>
+        <p class="text-brand-gold font-bold text-sm pt-2">
+          «سلامتنا مسؤوليتنا جميعاً.. معاً نحو مدرسة آمنة»
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- النوافذ المنبثقة (Modals)                                 -->
+  <!-- ========================================================= -->
+
+  <!-- 1. نافذة تفاصيل بطاقة التوعية -->
+  <div id="awareness-modal" class="fixed inset-0 z-50 hidden bg-black/65 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 border-2 border-brand-gold shadow-2xl space-y-4 relative">
+      <button onclick="closeModal('awareness-modal')" class="absolute top-4 left-4 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center font-bold text-gray-600 cursor-pointer">✕</button>
+      <div id="awareness-modal-icon" class="w-20 h-20 mx-auto rounded-2xl bg-brand-mint border border-emerald-200 flex items-center justify-center"></div>
+      <h3 id="awareness-modal-title" class="text-xl sm:text-2xl font-black text-brand-darkest text-center"></h3>
+      <p id="awareness-modal-short" class="text-sm font-bold text-brand-emerald text-center"></p>
+      <div class="bg-brand-ivory p-4 rounded-2xl border border-emerald-200 text-sm text-gray-700 leading-relaxed" id="awareness-modal-detail"></div>
+      <button onclick="closeModal('awareness-modal')" class="w-full btn-emerald text-white font-bold py-3 rounded-xl cursor-pointer">فهمتُ المعلومة 👍🏻</button>
+    </div>
+  </div>
+
+  <!-- 2. نافذة المشاركة عبر واتساب ورمز QR -->
+  <div id="share-modal" class="fixed inset-0 z-50 hidden bg-black/65 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 border-2 border-brand-gold shadow-2xl text-center space-y-4 relative">
+      <button onclick="closeModal('share-modal')" class="absolute top-4 left-4 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center font-bold text-gray-600 cursor-pointer">✕</button>
+      <h3 class="text-xl font-black text-brand-darkest">مشاركة مبادرة «أنا أتصرف بأمان»</h3>
+      <p class="text-xs text-gray-600">امسحي رمز الاستجابة السريعة (QR) أو شاركي الرابط مباشرة مع الطالبات والأسر:</p>
+      
+      <div id="qrcode-container" class="mx-auto w-44 h-44 p-3 bg-white rounded-2xl border-2 border-brand-emerald flex items-center justify-center shadow-inner"></div>
+      
+      <div class="flex items-center gap-2 bg-brand-ivory p-2 rounded-xl border border-emerald-200">
+        <input type="text" id="share-url-input" readonly class="w-full bg-transparent text-xs text-gray-700 outline-none px-2" dir="ltr" />
+        <button onclick="copyShareLink()" class="px-3 py-1.5 rounded-lg bg-brand-emerald text-white text-xs font-bold shrink-0 cursor-pointer">نسخ</button>
+      </div>
+
+      <a id="whatsapp-share-link" href="#" target="_blank" rel="noopener" class="w-full btn-emerald text-white font-extrabold py-3 rounded-xl flex items-center justify-center gap-2">
+        <span>مشاركة عبر واتساب</span>
+        <span>💬</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- 3. نافذة تسجيل دخول الإدارة المحمية -->
+  <div id="admin-login-modal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 border-2 border-brand-gold shadow-2xl space-y-4 relative">
+      <button onclick="closeModal('admin-login-modal')" class="absolute top-4 left-4 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center font-bold text-gray-600 cursor-pointer">✕</button>
+      <div class="text-center space-y-1">
+        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-darkest text-brand-gold flex items-center justify-center text-2xl">🔐</div>
+        <h3 class="text-xl font-black text-brand-darkest">دخول إدارة المبادرة</h3>
+        <p class="text-xs text-gray-500">مخصص لمديرة المدرسة أ. مريم الغامدي ومنسقة المبادرة أ. تغريد علام</p>
+      </div>
+
+      <form onsubmit="verifyAdminLogin(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-brand-dark mb-1">رمز التحقق الإداري</label>
+          <input type="password" id="admin-passcode-input" required placeholder="أدخلي الرمز الإداري..." class="w-full px-4 py-3 rounded-xl bg-brand-ivory border border-emerald-300 text-center font-bold tracking-widest outline-none" />
+          <p class="text-[11px] text-gray-500 mt-1 text-center">الرمز الافتراضي للتشغيل: <span class="font-mono font-bold text-brand-emerald">1222026</span></p>
+        </div>
+        <button type="submit" class="w-full btn-emerald text-white font-extrabold py-3 rounded-xl cursor-pointer">
+          دخول لوحة الإدارة
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. نافذة تكبير صورة الشاهد -->
+  <div id="image-lightbox-modal" class="fixed inset-0 z-50 hidden bg-black/85 flex items-center justify-center p-4" onclick="closeModal('image-lightbox-modal')">
+    <div class="max-w-3xl w-full bg-white rounded-2xl overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+      <img id="lightbox-img" src="" alt="معاينة الشاهد" class="w-full max-h-[75vh] object-contain bg-black" />
+      <div class="p-4 flex items-center justify-between bg-white">
+        <h4 id="lightbox-caption" class="font-bold text-brand-darkest text-sm"></h4>
+        <div class="flex gap-2">
+          <a id="lightbox-download" href="#" download="evidence.jpg" class="px-4 py-2 rounded-xl bg-brand-emerald text-white text-xs font-bold">تنزيل الصورة ⬇️</a>
+          <button onclick="closeModal('image-lightbox-modal')" class="px-4 py-2 rounded-xl bg-gray-200 text-gray-800 text-xs font-bold cursor-pointer">إغلاق</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- البرمجة الكاملة والربط السحابي مع Firebase Firestore       -->
+  <!-- ========================================================= -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // إعدادات Firebase من البيئة السحابية
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'ana-atasarraf-biaman-122';
+    let db = null;
+    let auth = null;
+    let currentUser = null;
+    let isCloudConnected = false;
+
+    // مخزن البيانات الحية في الذاكرة (تُحدّث لحظياً من Firestore)
+    const appState = {
+      students: [],     // سجل الطالبات المسجلات وإنجاز الرحلة والاختبارات
+      wallPosts: [],    // مشاركات جدارية الأمان (معلقة ومعتمدة)
+      impacts: [],      // استبانات القياس القبلي والبعدي
+      evidences: [],    // شواهد رحلة الأمان
+      currentStudentId: sessionStorage.getItem('active_student_id') || null,
+      currentStudentName: sessionStorage.getItem('active_student_name') || '',
+      currentStudentGrade: sessionStorage.getItem('active_student_grade') || '',
+      currentStage: 1,
+      likedPosts: JSON.parse(sessionStorage.getItem('liked_posts') || '[]'),
+      isAdmin: sessionStorage.getItem('is_admin_122') === 'true'
+    };
+
+    // تهيئة Firebase والمصادقة قبل أي استعلام
+    async function initCloudBackend() {
+      try {
+        if (typeof __firebase_config === 'undefined' || !__firebase_config) {
+          throw new Error("لم يتم العثور على إعدادات قاعدة البيانات السحابية.");
+        }
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        db = getFirestore(app);
+
+        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+          await signInWithCustomToken(auth, __initial_auth_token);
+        } else {
+          await signInAnonymously(auth);
+        }
+
+        currentUser = auth.currentUser;
+        if (currentUser) {
+          isCloudConnected = true;
+          const topBadge = document.getElementById('top-cloud-badge');
+          if (topBadge) {
+            topBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-brand-light"></span><span>متصل بقاعدة البيانات السحابية الدائمة 🟢 (الحفظ فوري ومباشر)</span>`;
+          }
+          startRealtimeListeners();
+        }
+      } catch (err) {
+        console.error("Cloud Connection Error:", err);
+        isCloudConnected = false;
+        const statusEl = document.getElementById('db-status-indicator');
+        if (statusEl) {
+          statusEl.innerHTML = `<span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span><span class="text-amber-300 text-xs">غير متصل بالسحابة</span>`;
+        }
+        const topBadge = document.getElementById('top-cloud-badge');
+        if (topBadge) {
+          topBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400"></span><span class="text-amber-300">تنبيه: قاعدة البيانات السحابية غير متصلة حالياً</span>`;
+        }
+        showToast("تنبيه: خدمة قاعدة البيانات السحابية غير متصلة حالياً.", "error");
+      }
+    }
+
+    // الاستماع الفوري للمجموعات السحابية (مسارات صارمة وفق القواعد)
+    function startRealtimeListeners() {
+      if (!db || !currentUser) return;
+
+      // 1. سجل الطالبات والنتائج
+      const studentsRef = collection(db, 'artifacts', appId, 'public', 'data', 'students');
+      onSnapshot(studentsRef, (snapshot) => {
+        appState.students = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+        updateAllMetricsUI();
+        renderAdminStudentsTable();
+      }, (err) => console.error("Students listener error:", err));
+
+      // 2. مشاركات جدارية الأمان
+      const postsRef = collection(db, 'artifacts', appId, 'public', 'data', 'wall_posts');
+      onSnapshot(postsRef, (snapshot) => {
+        appState.wallPosts = snapshot.docs
+          .map(d => ({ id: d.id, ...d.data() }))
+          .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        updateAllMetricsUI();
+        renderApprovedWallPosts();
+        renderAdminPosts();
+      }, (err) => console.error("Posts listener error:", err));
+
+      // 3. قياس الأثر القبلي والبعدي
+      const impactsRef = collection(db, 'artifacts', appId, 'public', 'data', 'impact_surveys');
+      onSnapshot(impactsRef, (snapshot) => {
+        appState.impacts = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+        renderImpactChart();
+        updateAllMetricsUI();
+      }, (err) => console.error("Impacts listener error:", err));
+
+      // 4. شواهد رحلة الأمان (evidence_items)
+      const evidenceRef = collection(db, 'artifacts', appId, 'public', 'data', 'evidence_items');
+      onSnapshot(evidenceRef, (snapshot) => {
+        appState.evidences = snapshot.docs
+          .map(d => ({ id: d.id, ...d.data() }))
+          .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        renderEvidenceGallery('all');
+        renderAdminEvidenceList();
+        updateAllMetricsUI();
+      }, (err) => console.error("Evidence listener error:", err));
+    }
+
+    // =========================================================
+    // تحديث الإحصائيات الديناميكية في لوحة التحكم والإدارة
+    // =========================================================
+    function updateAllMetricsUI() {
+      const totalStudents = appState.students.length;
+      const completedJourneys = appState.students.filter(s => s.journeyCompleted).length;
+      const quizzedStudents = appState.students.filter(s => typeof s.quizScore === 'number');
+      const approvedPosts = appState.wallPosts.filter(p => p.status === 'approved');
+      const pendingPosts = appState.wallPosts.filter(p => p.status === 'pending');
+
+      // إجمالي المشاركات (طالبات + مشاركات جدارية معتمدة)
+      const totalParticipations = totalStudents + approvedPosts.length;
+      // عدد الأسر المشاركة (تحسب من عدد الأسر الفريدة أو الطالبات المسجلات)
+      const uniqueFamilies = new Set(
+        appState.students.map(s => (s.name || '').trim().split(' ').slice(-1)[0] + '_' + (s.grade || ''))
+      ).size;
+
+      // متوسط درجات الاختبارات
+      const avgQuizPercent = quizzedStudents.length > 0
+        ? Math.round(quizzedStudents.reduce((acc, s) => acc + ((s.quizScore / 10) * 100), 0) / quizzedStudents.length)
+        : 0;
+
+      // نسبة إكمال الرحلة
+      const completionRate = totalStudents > 0
+        ? Math.round((completedJourneys / totalStudents) * 100)
+        : 0;
+
+      // مؤشر الجاهزية المعرفية للمدرسة (محسوب فعلياً من الإكمال والاختبار)
+      let readinessIndex = 0;
+      if (totalStudents > 0 || quizzedStudents.length > 0) {
+        if (quizzedStudents.length > 0 && totalStudents > 0) {
+          readinessIndex = Math.round((completionRate * 0.5) + (avgQuizPercent * 0.5));
+        } else if (quizzedStudents.length > 0) {
+          readinessIndex = avgQuizPercent;
+        } else {
+          readinessIndex = completionRate;
+        }
+      }
+
+      // تحديث بطاقات لوحة التحكم الرئيسية
+      document.getElementById('stat-participants').innerText = totalParticipations;
+      document.getElementById('stat-families').innerText = uniqueFamilies;
+      document.getElementById('stat-readiness').innerText = readinessIndex + '%';
+
+      // تحديث بطاقات لوحة الإدارة
+      document.getElementById('adm-stat-total').innerText = totalParticipations;
+      document.getElementById('adm-stat-completed').innerText = completedJourneys;
+      document.getElementById('adm-stat-quizzes').innerText = quizzedStudents.length;
+      document.getElementById('adm-stat-avg').innerText = avgQuizPercent + '%';
+      document.getElementById('adm-stat-approved-wall').innerText = approvedPosts.length;
+      document.getElementById('adm-stat-pending-wall').innerText = pendingPosts.length;
+      document.getElementById('adm-stat-evidence').innerText = appState.evidences.length;
+      document.getElementById('adm-stat-progress').innerText = readinessIndex + '%';
+
+      // تحديث التقرير القابل للطباعة
+      document.getElementById('rep-total').innerText = totalParticipations;
+      document.getElementById('rep-completion').innerText = completionRate + '%';
+      document.getElementById('rep-quiz-avg').innerText = avgQuizPercent + '%';
+      document.getElementById('rep-posts').innerText = approvedPosts.length;
+      document.getElementById('rep-evidence-count').innerText = appState.evidences.length;
+    }
+
+    // =========================================================
+    // التنقل السلس بين الأقسام (SPA Navigation)
+    // =========================================================
+    window.enterPlatform = function() {
+      const splash = document.getElementById('splash-screen');
+      const mainApp = document.getElementById('main-app');
+      splash.style.opacity = '0';
+      setTimeout(() => {
+        splash.classList.add('hidden');
+        mainApp.classList.remove('hidden');
+        mainApp.classList.add('flex');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 600);
+    };
+
+    window.navigateTo = function(viewId) {
+      const views = ['dashboard', 'journey', 'awareness', 'wall', 'quiz', 'impact', 'evidence', 'admin'];
+      views.forEach(v => {
+        const el = document.getElementById('view-' + v);
+        if (el) el.classList.add('hidden');
+      });
+
+      const target = document.getElementById('view-' + viewId);
+      if (target) target.classList.remove('hidden');
+
+      const homeBtn = document.getElementById('nav-home-btn');
+      if (viewId === 'dashboard') {
+        homeBtn.classList.add('hidden');
+      } else {
+        homeBtn.classList.remove('hidden');
+      }
+
+      // تهيئة خاصة لبعض الأقسام عند فتحها
+      if (viewId === 'journey') syncJourneyRegistrationUI();
+      if (viewId === 'quiz') syncQuizStudentUI();
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // =========================================================
+    // القسم الأول: منطق «رحلة الأمان» ومراحلها الخمس
+    // =========================================================
+    function syncJourneyRegistrationUI() {
+      if (appState.currentStudentId && appState.currentStudentName) {
+        document.getElementById('journey-register-card').classList.add('hidden');
+        document.getElementById('journey-stages-container').classList.remove('hidden');
+        document.getElementById('journey-student-badge').innerText = `البطلة: ${appState.currentStudentName} (${appState.currentStudentGrade})`;
+        document.getElementById('active-student-banner').classList.remove('hidden');
+        document.getElementById('active-student-name-display').innerText = `${appState.currentStudentName} - ${appState.currentStudentGrade}`;
+        goToJourneyStage(appState.currentStage || 1);
+      } else {
+        document.getElementById('journey-register-card').classList.remove('hidden');
+        document.getElementById('journey-stages-container').classList.add('hidden');
+      }
+    }
+
+    window.resetStudentRegistration = function() {
+      appState.currentStudentId = null;
+      appState.currentStudentName = '';
+      appState.currentStudentGrade = '';
+      appState.currentStage = 1;
+      sessionStorage.removeItem('active_student_id');
+      sessionStorage.removeItem('active_student_name');
+      sessionStorage.removeItem('active_student_grade');
+      document.getElementById('active-student-banner').classList.add('hidden');
+      syncJourneyRegistrationUI();
+    };
+
+    window.handleJourneyStart = async function(e) {
+      e.preventDefault();
+      const name = document.getElementById('student-name').value.trim();
+      const grade = document.getElementById('student-grade').value;
+      const classRoom = document.getElementById('student-class').value.trim();
+
+      if (!name || !grade || !classRoom) {
+        showToast("يرجى إكمال جميع الحقول للبدء.", "error");
+        return;
+      }
+
+      if (!db || !currentUser) {
+        showToast("قاعدة البيانات غير متصلة حالياً.", "error");
+        return;
+      }
+
+      const btn = document.getElementById('start-journey-btn');
+      btn.disabled = true;
+      btn.innerText = "جاري تجهيز رحلتك...";
+
+      try {
+        // التحقق مما إذا كانت الطالبة مسجلة مسبقاً بنفس الاسم والصف لتجنب التكرار
+        const existing = appState.students.find(s => s.name === name && s.grade === grade);
+        let studentId = null;
+
+        if (existing) {
+          studentId = existing.id;
+        } else {
+          const docRef = await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'students'), {
+            name,
+            grade,
+            classRoom,
+            currentStage: 1,
+            journeyCompleted: false,
+            quizScore: null,
+            uid: currentUser.uid,
+            createdAt: Date.now()
+          });
+          studentId = docRef.id;
+        }
+
+        appState.currentStudentId = studentId;
+        appState.currentStudentName = name;
+        appState.currentStudentGrade = grade;
+        appState.currentStage = 1;
+
+        sessionStorage.setItem('active_student_id', studentId);
+        sessionStorage.setItem('active_student_name', name);
+        sessionStorage.setItem('active_student_grade', grade);
+
+        showToast(`أهلاً بكِ يا بطلة الأمان ${name}!`, "success");
+        syncJourneyRegistrationUI();
+      } catch (err) {
+        console.error(err);
+        showToast("حدث خطأ أثناء حفظ البيانات، حاولي مرة أخرى.", "error");
+      } finally {
+        btn.disabled = false;
+        btn.innerText = "ابدئي رحلتي 🚀";
+      }
+    };
+
+    window.goToJourneyStage = function(stageNum) {
+      appState.currentStage = stageNum;
+      for (let i = 1; i <= 5; i++) {
+        const panel = document.getElementById('stage-content-' + i);
+        const tab = document.getElementById('stage-tab-' + i);
+        if (i === stageNum) {
+          panel.classList.remove('hidden');
+          tab.className = "py-2 px-1 rounded-xl text-[11px] sm:text-xs font-extrabold bg-brand-emerald text-white border-brand-emerald shadow-sm cursor-pointer";
+        } else {
+          panel.classList.add('hidden');
+          tab.className = i < stageNum
+            ? "py-2 px-1 rounded-xl text-[11px] sm:text-xs font-bold bg-brand-mint text-brand-emerald border-emerald-300 cursor-pointer"
+            : "py-2 px-1 rounded-xl text-[11px] sm:text-xs font-bold bg-gray-50 text-gray-500 border-gray-200 cursor-pointer";
+        }
+      }
+
+      const percent = stageNum * 20;
+      document.getElementById('journey-progress-bar').style.width = percent + '%';
+      document.getElementById('journey-progress-text').innerText = `المرحلة ${stageNum} من 5 (${percent}%)`;
+
+      // حفظ تقدم المرحلة الحالية في سجل الطالبة السحابي
+      if (db && currentUser && appState.currentStudentId) {
+        const stRef = doc(db, 'artifacts', appId, 'public', 'data', 'students', appState.currentStudentId);
+        updateDoc(stRef, { currentStage: stageNum, updatedAt: Date.now() }).catch(() => {});
+      }
+    };
+
+    // بناء محتوى المراحل 2 و 3 و 4
+    function buildJourneyStaticContent() {
+      // المرحلة 2: المهارات الست
+      const stage2Skills = [
+        { icon: "🚪", title: "أتعرف على مخارج الطوارئ", desc: "أحفظ أماكن اللوحات الخضراء المضيئة للخروج الآمن." },
+        { icon: "🛤️", title: "أعرف مسارات الإخلاء", desc: "أتعرّف على الطريق المحدد لفصلي نحو الساحة الخارجية." },
+        { icon: "👩‍🏫", title: "أستمع إلى تعليمات المعلمات", desc: "أنتبه جيداً لتوجيهات معلمتي ومسؤولة السلامة." },
+        { icon: "🧘‍♀️", title: "أحافظ على هدوئي", desc: "الهدوء يساعدني على التفكير السليم والتصرف بسرعة وأمان." },
+        { icon: "🚩", title: "أعرف مكان التجمع الآمن", desc: "أحفظ موقع نقطة التجمع الخاصة بفصلي في فناء المدرسة." },
+        { icon: "🏃‍♀️", title: "أشارك في تدريبات الإخلاء بجدية", desc: "التدريب العملي يجعلني مستعدة في أي وقت." }
+      ];
+      document.getElementById('stage2-cards').innerHTML = stage2Skills.map(s => `
+        <div class="p-4 rounded-2xl bg-brand-ivory border border-emerald-200 flex items-start gap-3">
+          <div class="w-12 h-12 rounded-xl bg-white border border-brand-gold/40 flex items-center justify-center text-2xl shrink-0">${s.icon}</div>
+          <div>
+            <h4 class="font-extrabold text-brand-darkest text-sm">${s.title}</h4>
+            <p class="text-xs text-gray-600 mt-1 leading-relaxed">${s.desc}</p>
+          </div>
+        </div>
+      `).join('');
+
+      // المرحلة 3: الخطوات السبع عند سماع الإنذار
+      const stage3Steps = [
+        { num: 1, icon: "🤫", text: "أحافظ على هدوئي ولا أصرخ." },
+        { num: 2, icon: "👂", text: "أستمع إلى تعليمات المعلمة." },
+        { num: 3, icon: "🎒", text: "أترك جميع الأغراض الشخصية." },
+        { num: 4, icon: "🚶‍♀️", text: "أتحرك بهدوء وفق مسار الإخلاء المحدد." },
+        { num: 5, icon: "🚫", text: "لا أتدافع ولا أعود إلى الخلف." },
+        { num: 6, icon: "🚩", text: "أتوجه إلى نقطة التجمع الآمنة." },
+        { num: 7, icon: "🧍‍♀️", text: "ألتزم بمكاني حتى صدور التعليمات." }
+      ];
+      document.getElementById('stage3-steps').innerHTML = stage3Steps.map(st => `
+        <div class="p-4 rounded-2xl bg-brand-ivory border border-emerald-200 flex items-center gap-3.5">
+          <div class="w-9 h-9 rounded-full bg-brand-emerald text-white font-black flex items-center justify-center shrink-0 text-sm">${st.num}</div>
+          <div class="text-2xl shrink-0">${st.icon}</div>
+          <p class="font-bold text-brand-darkest text-sm sm:text-base">${st.text}</p>
+        </div>
+      `).join('');
+
+      // المرحلة 4: المواقف التفاعلية الأربعة
+      const scenarios = [
+        {
+          id: "sc1",
+          title: "الموقف الأول: سمعت صوت الإنذار أثناء وجودك في الفصل، ماذا تفعلين؟",
+          options: [
+            { text: "ألتزم الهدوء وأستمع لتعليمات المعلمة للخروج بانتظام.", correct: true, exp: "رائعة! الهدوء والاستماع للمعلمة هما أساس الإخلاء الآمن." },
+            { text: "أصرخ وأركض بسرعة نحو الباب.", correct: false, exp: "الصراخ والركض يسببان الخوف والتدافع." }
+          ]
+        },
+        {
+          id: "sc2",
+          title: "الموقف الثاني: رأيت زميلتك خائفة، كيف تساعدينها؟",
+          options: [
+            { text: "أطمئنها بكلمات لطيفة وأمشي بجانبها بهدوء ونبلغ المعلمة.", correct: true, exp: "تصرف بطولي! التعاون والطمأنينة يحميان الجميع." },
+            { text: "أتركها وحدها وأبتعد عنها.", correct: false, exp: "نحن في المدرسة أسرة واحدة نساعد بعضنا بأمان." }
+          ]
+        },
+        {
+          id: "sc3",
+          title: "الموقف الثالث: وجدت حقيبتك في مكانك أثناء الإخلاء، هل تعودين لإحضارها؟",
+          options: [
+            { text: "لا أعود أبداً، سلامتي أهم من أي أغراض شخصية.", correct: true, exp: "أحسنتِ! العودة عكس السير تعرّضك للخطر وتعيق الإخلاء." },
+            { text: "نعم أعود بسرعة لأخذ الحقيبة.", correct: false, exp: "خطأ، يُمنع العودة لأخذ الأغراض أثناء الإخلاء." }
+          ]
+        },
+        {
+          id: "sc4",
+          title: "الموقف الرابع: وصلت إلى نقطة التجمع، ماذا تفعلين؟",
+          options: [
+            { text: "أقف في صف فصلي بانتظام وأنتظر تعليمات المعلمة.", correct: true, exp: "ممتازة! الالتزام في نقطة التجمع يسهل التأكد من سلامة الجميع." },
+            { text: "أتحرك للبحث عن صديقاتي في الفصول الأخرى.", correct: false, exp: "يجب البقاء مع مجموعتك وعدم مغادرة نقطة التجمع دون إذن." }
+          ]
+        }
+      ];
+
+      document.getElementById('stage4-scenarios').innerHTML = scenarios.map((sc, idx) => `
+        <div class="p-4 sm:p-5 rounded-2xl bg-brand-ivory border border-emerald-200 space-y-3">
+          <h4 class="font-extrabold text-brand-darkest text-sm sm:text-base">${sc.title}</h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            ${sc.options.map((opt, oIdx) => `
+              <button onclick="answerScenario('${sc.id}', ${opt.correct}, '${opt.exp.replace(/'/g, "\\'")}')" class="text-right p-3 rounded-xl bg-white border border-emerald-200 hover:border-brand-emerald text-xs sm:text-sm font-bold transition cursor-pointer">
+                ${opt.text}
+              </button>
+            `).join('')}
+          </div>
+          <div id="fb-${sc.id}" class="hidden p-3 rounded-xl text-xs sm:text-sm font-bold"></div>
+        </div>
+      `).join('');
+    }
+
+    window.answerScenario = function(scId, isCorrect, explanation) {
+      const fb = document.getElementById('fb-' + scId);
+      fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-amber-100', 'text-amber-900');
+      if (isCorrect) {
+        fb.classList.add('bg-emerald-100', 'text-emerald-900');
+        fb.innerText = "✅ " + explanation;
+      } else {
+        fb.classList.add('bg-amber-100', 'text-amber-900');
+        fb.innerText = "⚠️ " + explanation;
+      }
+    };
+
+    // إتمام رحلة الأمان وحفظ الحالة في قاعدة البيانات
+    window.completeSafetyJourney = async function() {
+      const box = document.getElementById('journey-celebration-box');
+      box.classList.remove('hidden');
+      box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      if (db && currentUser && appState.currentStudentId) {
+        try {
+          const stRef = doc(db, 'artifacts', appId, 'public', 'data', 'students', appState.currentStudentId);
+          await updateDoc(stRef, {
+            journeyCompleted: true,
+            completedAt: Date.now()
+          });
+          showToast("تم تسجيل إتمام رحلة الأمان في سجلك بنجاح! 🏆", "success");
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    };
+
+    // =========================================================
+    // القسم الثاني: بناء بطاقات «ركن التوعية» الـ 10
+    // =========================================================
+    const awarenessTopics = [
+      {
+        title: "1. أعرف جرس الإنذار",
+        short: "صوت تنبيه خاص يخبرنا بضرورة الاستعداد والتحرك المنظم.",
+        detail: "جرس الإنذار في المدرسة يختلف عن جرس الحصص العادي؛ فعند سماعه ندرك فوراً أن هناك حالة تتطلب الهدوء والاستماع لتعليمات المعلمة والبدء بالإخلاء المنظم نحو نقطة التجمع.",
+        svg: `<svg viewBox="0 0 80 80" class="w-14 h-14"><circle cx="40" cy="40" r="32" fill="#fefce8" stroke="#d4af37" stroke-width="2.5"/><circle cx="40" cy="40" r="22" fill="#dc2626"/><circle cx="40" cy="40" r="7" fill="#fecaca"/></svg>`
+      },
+      {
+        title: "2. أتعرف على مخارج الطوارئ",
+        short: "اللوحات الخضراء المضيئة تدلنا على أقرب طريق للخروج الآمن.",
+        detail: "توجد في ممرات المدرسة لوحات خضراء مكتوب عليها (مخرج طوارئ EXIT) مع سهم يوضح الاتجاه. يجب أن نتعرف عليها مسبقاً لنعرف طريقنا بوضوح دون تردد.",
+        svg: `<svg viewBox="0 0 80 80" class="w-14 h-14"><rect x="10" y="20" width="60" height="40" rx="8" fill="#059669" stroke="#d4af37" stroke-width="2"/><text x="40" y="44" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">مخرج →</text></svg>`
+      },
+      {
+        title: "3. لا أستخدم المصعد",
+        short: "نستخدم السلالم المخصصة للإخلاء فقط ونتجنب المصاعد تماماً.",
+        detail: "أثناء حالات الطوارئ أو سماع الإنذار قد ينقطع التيار الكهربائي فجأة، لذلك يُمنع استخدام المصعد نهائياً، وننزل عبر الدرج بهدوء ممسكين بالدرابزين.",
+        svg: `<svg viewBox="0 0 80 80" class="w-14 h-14"><rect x="18" y="14" width="44" height="52" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="2.5"/><line x1="40" y1="14" x2="40" y2="66" stroke="#059669" stroke-width="2"/><line x1="16" y1="16" x2="64" y2="64" stroke="#dc2626" stroke-width="4" stroke-linecap="round"/></svg>`
+      },
+      {
+        title: "4. لا أقترب من النوافذ الزجاجية",
+        short: "الابتعاد عن الزجاج يحمينا من أي شظايا أو مخاطر محتملة.",
+        detail: "عند صدور تعليمات البقاء داخل الفصل أو الاحتماء، نبتعد فوراً عن النوافذ والأبواب الزجاجية، ونجلس في الأماكن الداخلية الآمنة التي تحددها المعلمة.",
+        svg: `<svg viewBox="0 0 80 80" class="w-14 h-14"><rect x="16" y="16" width="48" height="48" rx="6" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.5"/><line x1="40" y1="16" x2="40" y2="64" stroke="#0284c7" stroke-width="2"/><line x1="16" y1="40" x2="64" y2="40" stroke="#0284c7" stroke-width="2"/><circle cx="60" cy="60" r="12" fill="#dc2626"/><text x="60" y="64" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold">!</text></svg>`
+      },
+      {
+        title: "5. لا أتدافع أثناء الإخلاء",
+        short: "المشي المنتظم وترك مسافة آمنة يحمي الجميع من السقوط.",
+        detail: "التدافع أو الركض في الممرات وعلى الدرج يسبب الإصابات ويعطّل وصول الجميع للأمان. نمشي بخطوات ثابتة ومنظمة في طابور هادئ.",
+        svg: `<svg viewBox="0 0 80 80" class="w-14 h-14"><circle cx="26" cy="28" r="7" fill="#059669"/><rect x="20" y="37" width="12" height="22" rx="4" fill="#059669"/><circle cx="54" cy="28" r="7" fill="#10b981"/><rect x="48" y="37" width="12" height="22" rx="4" fill="#10b981"/><path d="M35 45 L45 45" stroke="#d4af37" stroke-width="2.5" stroke-dasharray="2 2"/></svg>`
+      },
+      {
+        title: "6. ألتزم بنقطة التجمع",
+        short: "نقطة التجمع هي المكان الآمن لالتقاء طالبات كل فصل.",
+        detail: "بعد الخروج من مبنى المدرسة نتوجه مباشرة إلى نقطة التجمع المحددة لفصلنا، ونقف بانتظام حتى تقوم المعلمة بحصر الأسماء والتأكد من سلامة الجميع.",
+        svg: `<svg viewBox="0 0 80 80" class="w-14 h-14"><circle cx="40" cy="40" r="32" fill="#ecfdf5" stroke="#059669" stroke-width="2.5"/><path d="M40 18 L40 58 M40 18 L58 26 L40 34" fill="#059669" stroke="#059669" stroke-width="2.5"/></svg>`
+      },
+      {
+        title: "7. أستمع إلى المعلمة",
+        short: "المعلمة هي القائدة المسؤولة عن توجيهنا نحو الأمان.",
+        detail: "تتلقى المعلمة التعليمات المباشرة من فريق الأمن والسلامة بالمدرسة، لذا فإن الإنصات لها وعدم التحدث الجانبي يضمن وصول التوجيهات بوضوح لكل طالبة.",
+        svg: `<svg viewBox="0 0 80 80" class="w-14 h-14"><circle cx="40" cy="26" r="11" fill="#fde6d2"/><path d="M24 62 C24 44, 56 44, 56 62" fill="#059669"/><circle cx="58" cy="24" r="9" fill="#fefce8" stroke="#d4af37" stroke-width="2"/><text x="58" y="28" text-anchor="middle" font-size="11">📢</text></svg>`
+      },
+      {
+        title: "8. أساعد دون أن أعرض نفسي للخطر",
+        short: "أطمئن زميلاتي وأبلغ المعلمة فوراً عن أي حالة تحتاج مساعدة.",
+        detail: "إذا رأيتِ زميلة متعثرة أو خائفة أو لاحظتِ شيئاً غير آمن، أبلغي المعلمة أو مسؤولة السلامة فوراً ولا تحاولي التصرف بمفردك في مواقف خطرة.",
+        svg: `<svg viewBox="0 0 80 80" class="w-14 h-14"><path d="M40 62 C20 48, 14 34, 24 24 C31 17, 38 22, 40 27 C42 22, 49 17, 56 24 C66 34, 60 48, 40 62 Z" fill="#10b981" stroke="#d4af37" stroke-width="2"/></svg>`
+      },
+      {
+        title: "9. أتعرف على وضعية الاحتماء",
+        short: "وضعية حماية الرأس والرقبة عند الحاجة وفق تعليمات المدرسة.",
+        detail: "في بعض الحالات التي تتطلب الاحتماء داخل المكان، نبتعد عن الزجاج وننخفض لحماية الرأس والرقبة تحت طاولة متينة أو بجانب جدار داخلي حتى زوال الخطر.",
+        svg: `<svg viewBox="0 0 80 80" class="w-14 h-14"><path d="M40 14 L64 24 L64 42 C64 56, 52 65, 40 69 C28 65, 16 56, 16 42 L16 24 Z" fill="#059669" stroke="#d4af37" stroke-width="2.5"/><path d="M31 41 L37 47 L50 34" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" fill="none"/></svg>`
+      },
+      {
+        title: "10. أتعلم أرقام الطوارئ",
+        short: "معرفة الرقم الموحد للطوارئ (911) وطلب المساعدة عبر الكبار.",
+        detail: "في المملكة العربية السعودية الرقم الموحد للطوارئ هو (911). نتعلم هذا الرقم المهم، وفي المدرسة نطلب المساعدة فوراً من المعلمات والإدارة.",
+        svg: `<svg viewBox="0 0 80 80" class="w-14 h-14"><rect x="14" y="20" width="52" height="40" rx="10" fill="#062c1e" stroke="#d4af37" stroke-width="2.5"/><text x="40" y="46" text-anchor="middle" fill="#fde047" font-size="16" font-weight="900">911</text></svg>`
+      }
+    ];
+
+    function renderAwarenessCards() {
+      const grid = document.getElementById('awareness-grid');
+      grid.innerHTML = awarenessTopics.map((item, idx) => `
+        <div class="safe-card p-5 flex flex-col justify-between hover:border-brand-emerald">
+          <div>
+            <div class="flex items-center gap-3.5 mb-3">
+              <div class="w-16 h-16 rounded-2xl bg-brand-mint border border-emerald-200 flex items-center justify-center shrink-0">
+                ${item.svg}
+              </div>
+              <h3 class="font-black text-brand-darkest text-base sm:text-lg leading-snug">${item.title}</h3>
+            </div>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">${item.short}</p>
+          </div>
+          <button onclick="openAwarenessModal(${idx})" class="w-full py-2.5 px-4 rounded-xl bg-brand-mint hover:bg-brand-emerald text-brand-emerald hover:text-white font-extrabold text-xs sm:text-sm border border-emerald-200 transition cursor-pointer">
+            اعرفي المزيد ✨
+          </button>
+        </div>
+      `).join('');
+    }
+
+    window.openAwarenessModal = function(idx) {
+      const item = awarenessTopics[idx];
+      document.getElementById('awareness-modal-icon').innerHTML = item.svg;
+      document.getElementById('awareness-modal-title').innerText = item.title;
+      document.getElementById('awareness-modal-short').innerText = item.short;
+      document.getElementById('awareness-modal-detail').innerText = item.detail;
+      document.getElementById('awareness-modal').classList.remove('hidden');
+    };
+
+    // =========================================================
+    // القسم الثالث: «جدارية الأمان» وضغط الصور والاعتماد الإداري
+    // =========================================================
+    function compressImageToBase64(file, maxWidth = 650, quality = 0.72) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            let width = img.width;
+            let height = img.height;
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.onerror = reject;
+          img.src = event.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    window.submitWallPost = async function(e) {
+      e.preventDefault();
+      if (!db || !currentUser) {
+        showToast("قاعدة البيانات غير متصلة حالياً.", "error");
+        return;
+      }
+
+      const name = document.getElementById('wall-name').value.trim();
+      const grade = document.getElementById('wall-grade').value;
+      const title = document.getElementById('wall-title').value.trim();
+      const message = document.getElementById('wall-message').value.trim();
+      const fileInput = document.getElementById('wall-image');
+
+      if (!name || !grade || !title || !message) {
+        showToast("يرجى تعبئة جميع الحقول المطلوبة.", "error");
+        return;
+      }
+
+      const btn = document.getElementById('wall-submit-btn');
+      btn.disabled = true;
+      btn.innerText = "جاري الإرسال للمراجعة...";
+
+      try {
+        let imageData = null;
+        if (fileInput.files && fileInput.files[0]) {
+          imageData = await compressImageToBase64(fileInput.files[0]);
+        }
+
+        // تحفظ بحالة pending ولا تظهر للعامة إلا بعد موافقة الإدارة
+        await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'wall_posts'), {
+          studentName: name,
+          grade,
+          title,
+          message,
+          imageData,
+          status: 'pending',
+          likes: 0,
+          likedBy: [],
+          uid: currentUser.uid,
+          createdAt: Date.now()
+        });
+
+        document.getElementById('wall-post-form').reset();
+        showToast("تم استلام مشاركتك بنجاح! ستظهر في الجدارية فور اعتمادها من إدارة المبادرة.", "success");
+      } catch (err) {
+        console.error(err);
+        showToast("تعذر إرسال المشاركة، تأكدي من حجم الصورة وحاولي مرة أخرى.", "error");
+      } finally {
+        btn.disabled = false;
+        btn.innerText = "إرسال المشاركة 📤";
+      }
+    };
+
+    window.renderApprovedWallPosts = function() {
+      const grid = document.getElementById('wall-posts-grid');
+      const searchQ = (document.getElementById('wall-search').value || '').trim().toLowerCase();
+      const filterGrade = document.getElementById('wall-filter-grade').value;
+
+      // عرض المشاركات المعتمدة (approved) فقط
+      const filtered = appState.wallPosts.filter(p => {
+        if (p.status !== 'approved') return false;
+        if (filterGrade !== 'all' && p.grade !== filterGrade) return false;
+        if (searchQ && !(p.studentName || '').toLowerCase().includes(searchQ) && !(p.title || '').toLowerCase().includes(searchQ)) return false;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full safe-card p-8 text-center text-gray-500 space-y-2">
+            <div class="text-4xl">🧱</div>
+            <p class="font-bold text-brand-dark">لا توجد مشاركات معتمدة مطابقة حالياً.</p>
+            <p class="text-xs">كوني أول من يضيف مشاركة توعوية لتعتمدها الإدارة وتنير الجدارية!</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(post => {
+        const likedByArr = Array.isArray(post.likedBy) ? post.likedBy : [];
+        const isLiked = appState.likedPosts.includes(post.id) || (currentUser && likedByArr.includes(currentUser.uid));
+        return `
+          <div class="safe-card overflow-hidden flex flex-col justify-between bg-white">
+            <div>
+              ${post.imageData ? `<img src="${post.imageData}" alt="${escapeHtml(post.title)}" class="w-full h-48 object-cover border-b border-emerald-100" />` : ''}
+              <div class="p-5 space-y-2">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="px-2.5 py-0.5 rounded-full bg-brand-mint text-brand-emerald text-[11px] font-bold border border-emerald-200">
+                    ${escapeHtml(post.grade)}
+                  </span>
+                  <span class="text-[11px] text-brand-gold font-bold">★ مشاركة معتمدة</span>
+                </div>
+                <h4 class="font-black text-brand-darkest text-base sm:text-lg">${escapeHtml(post.title)}</h4>
+                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">${escapeHtml(post.message)}</p>
+              </div>
+            </div>
+
+            <div class="px-5 py-3 bg-brand-ivory border-t border-emerald-100 flex items-center justify-between">
+              <span class="text-xs font-extrabold text-brand-dark">👧🏻 ${escapeHtml(post.studentName)}</span>
+              <button onclick="likeWallPost('${post.id}')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-extrabold border transition cursor-pointer ${isLiked ? 'bg-brand-emerald text-white border-brand-emerald' : 'bg-white text-brand-emerald border-emerald-200 hover:bg-brand-mint'}">
+                <span>❤️</span>
+                <span>${post.likes || 0}</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    };
+
+    window.likeWallPost = async function(postId) {
+      if (!db || !currentUser) return;
+      const targetPost = appState.wallPosts.find(p => p.id === postId);
+      if (!targetPost) return;
+
+      const likedByArr = Array.isArray(targetPost.likedBy) ? targetPost.likedBy : [];
+      if (appState.likedPosts.includes(postId) || likedByArr.includes(currentUser.uid)) {
+        showToast("لقد أعجبتِ بهذه المشاركة مسبقاً 💚", "info");
+        return;
+      }
+
+      try {
+        appState.likedPosts.push(postId);
+        sessionStorage.setItem('liked_posts', JSON.stringify(appState.likedPosts));
+        const updatedLikedBy = [...likedByArr, currentUser.uid];
+        const postRef = doc(db, 'artifacts', appId, 'public', 'data', 'wall_posts', postId);
+        await updateDoc(postRef, {
+          likes: updatedLikedBy.length,
+          likedBy: updatedLikedBy
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    // =========================================================
+    // الاختبار التفاعلي «ماذا أعرف عن الأمان؟» (10 أسئلة)
+    // =========================================================
+    const quizQuestions = [
+      {
+        q: "1. ماذا تفعلين عند سماع جرس الإنذار؟",
+        options: ["أصرخ وأجري.", "ألتزم الهدوء وأستمع للتعليمات.", "أعود لإحضار حقيبتي."],
+        correct: 1
+      },
+      {
+        q: "2. هل يجوز التدافع أثناء الإخلاء؟",
+        options: ["نعم.", "لا."],
+        correct: 1
+      },
+      {
+        q: "3. أين أتوجه بعد الخروج من المبنى؟",
+        options: ["إلى نقطة التجمع.", "إلى المنزل مباشرة.", "إلى مكان آخر."],
+        correct: 0
+      },
+      {
+        q: "4. ماذا أفعل إذا شعرت زميلتي بالخوف؟",
+        options: ["أتركها وأجري.", "أساعدها بهدوء وأبلغ المعلمة.", "أضحك عليها."],
+        correct: 1
+      },
+      {
+        q: "5. هل أستخدم المصعد أثناء الإخلاء؟",
+        options: ["نعم.", "لا."],
+        correct: 1
+      },
+      {
+        q: "6. لماذا نتعرف على مخارج الطوارئ؟",
+        options: ["للزينة.", "لمعرفة طريق الخروج الآمن.", "لتجنب الدروس."],
+        correct: 1
+      },
+      {
+        q: "7. ماذا أفعل إذا نسيت حقيبتي؟",
+        options: ["أعود إليها.", "أتركها وأتابع الإخلاء.", "أطلب من زميلتي إحضارها."],
+        correct: 1
+      },
+      {
+        q: "8. هل أغادر نقطة التجمع دون تعليمات؟",
+        options: ["نعم.", "لا."],
+        correct: 1
+      },
+      {
+        q: "9. ماذا أفعل إذا شاهدت خطرًا؟",
+        options: ["أتجاهله.", "أبلغ المعلمة أو المسؤول.", "أقترب منه."],
+        correct: 1
+      },
+      {
+        q: "10. ما أهم صفة أثناء الطوارئ؟",
+        options: ["الهدوء والانتباه.", "التدافع.", "الصراخ."],
+        correct: 0
+      }
+    ];
+
+    let quizState = {
+      index: 0,
+      score: 0,
+      answered: false
+    };
+
+    function syncQuizStudentUI() {
+      const fieldsDiv = document.getElementById('quiz-student-fields');
+      if (appState.currentStudentName) {
+        fieldsDiv.classList.add('hidden');
+      } else {
+        fieldsDiv.classList.remove('hidden');
+      }
+    }
+
+    window.startQuiz = async function() {
+      if (!appState.currentStudentName) {
+        const qName = document.getElementById('quiz-student-name').value.trim();
+        const qGrade = document.getElementById('quiz-student-grade').value;
+        if (!qName || !qGrade) {
+          showToast("يرجى كتابة اسمك واختيار الصف قبل بدء الاختبار.", "error");
+          return;
+        }
+        appState.currentStudentName = qName;
+        appState.currentStudentGrade = qGrade;
+        sessionStorage.setItem('active_student_name', qName);
+        sessionStorage.setItem('active_student_grade', qGrade);
+
+        if (db && currentUser) {
+          const docRef = await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'students'), {
+            name: qName,
+            grade: qGrade,
+            classRoom: '-',
+            journeyCompleted: false,
+            quizScore: null,
+            createdAt: Date.now()
+          });
+          appState.currentStudentId = docRef.id;
+          sessionStorage.setItem('active_student_id', docRef.id);
+        }
+      }
+
+      quizState = { index: 0, score: 0, answered: false };
+      document.getElementById('quiz-intro').classList.add('hidden');
+      document.getElementById('quiz-result').classList.add('hidden');
+      document.getElementById('quiz-active').classList.remove('hidden');
+      renderQuizQuestion();
+    };
+
+    function renderQuizQuestion() {
+      const qObj = quizQuestions[quizState.index];
+      quizState.answered = false;
+
+      document.getElementById('quiz-counter').innerText = `السؤال ${quizState.index + 1} من ${quizQuestions.length}`;
+      document.getElementById('quiz-score-live').innerText = `النقاط: ${quizState.score}`;
+      document.getElementById('quiz-progress-bar').style.width = `${((quizState.index + 1) / quizQuestions.length) * 100}%`;
+      document.getElementById('quiz-question-text').innerText = qObj.q;
+
+      const fb = document.getElementById('quiz-feedback-msg');
+      fb.classList.add('hidden');
+      const nextBtn = document.getElementById('quiz-next-btn');
+      nextBtn.disabled = true;
+      nextBtn.innerText = quizState.index === quizQuestions.length - 1 ? "عرض النتيجة النهائية 🏆" : "السؤال التالي ←";
+
+      const letters = ['أ', 'ب', 'ج', 'د'];
+      document.getElementById('quiz-options-list').innerHTML = qObj.options.map((opt, idx) => `
+        <button onclick="selectQuizOption(${idx})" id="q-opt-${idx}" class="w-full text-right p-4 rounded-xl bg-white border-2 border-emerald-200 hover:border-brand-emerald font-bold text-sm sm:text-base transition cursor-pointer flex items-center gap-3">
+          <span class="w-7 h-7 rounded-lg bg-brand-mint text-brand-emerald flex items-center justify-center text-xs font-black shrink-0">${letters[idx]}</span>
+          <span>${opt}</span>
+        </button>
+      `).join('');
+    }
+
+    window.selectQuizOption = function(selectedIdx) {
+      if (quizState.answered) return;
+      quizState.answered = true;
+
+      const qObj = quizQuestions[quizState.index];
+      const isCorrect = selectedIdx === qObj.correct;
+      if (isCorrect) quizState.score++;
+
+      document.getElementById('quiz-score-live').innerText = `النقاط: ${quizState.score}`;
+
+      qObj.options.forEach((_, idx) => {
+        const btn = document.getElementById('q-opt-' + idx);
+        btn.disabled = true;
+        if (idx === qObj.correct) {
+          btn.classList.remove('border-emerald-200', 'bg-white');
+          btn.classList.add('border-brand-emerald', 'bg-emerald-100', 'text-emerald-950');
+        } else if (idx === selectedIdx && !isCorrect) {
+          btn.classList.remove('border-emerald-200', 'bg-white');
+          btn.classList.add('border-red-400', 'bg-red-50', 'text-red-900');
+        }
+      });
+
+      const fb = document.getElementById('quiz-feedback-msg');
+      fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-red-100', 'text-red-900');
+      if (isCorrect) {
+        fb.classList.add('bg-emerald-100', 'text-emerald-900');
+        fb.innerText = "🌟 إجابة صحيحة! أحسنتِ يا بطلة.";
+      } else {
+        fb.classList.add('bg-red-100', 'text-red-900');
+        fb.innerText = `💡 الإجابة الصحيحة هي: (${qObj.options[qObj.correct]})`;
+      }
+
+      document.getElementById('quiz-next-btn').disabled = false;
+    };
+
+    window.nextQuizQuestion = async function() {
+      if (quizState.index < quizQuestions.length - 1) {
+        quizState.index++;
+        renderQuizQuestion();
+      } else {
+        await finishQuiz();
+      }
+    };
+
+    async function finishQuiz() {
+      document.getElementById('quiz-active').classList.add('hidden');
+      document.getElementById('quiz-result').classList.remove('hidden');
+
+      const percent = Math.round((quizState.score / quizQuestions.length) * 100);
+      document.getElementById('quiz-result-name').innerText = appState.currentStudentName || "بطلة الأمان";
+      document.getElementById('quiz-result-score').innerText = `${quizState.score} / 10`;
+      document.getElementById('quiz-result-percent').innerText = `${percent}%`;
+
+      let msg = "";
+      if (percent >= 90) msg = "ما شاء الله! أنتِ بطلة أمان متميزة وتملكين وعياً عالياً بالتصرف الصحيح عند الإنذار المبكر.";
+      else if (percent >= 70) msg = "أحسنتِ يا متأهبة! نتيجة رائعة، استمري في مراجعة بطاقات التوعية لتصبحي قدوة لزميلاتك.";
+      else msg = "محاولة جميلة! ننصحك بمراجعة مراحل رحلة الأمان وركن التوعية ثم إعادة الاختبار لتحقيق الدرجة الكاملة.";
+      document.getElementById('quiz-result-message').innerText = msg;
+
+      // حفظ النتيجة في سجل الطالبة بقاعدة البيانات
+      if (db && currentUser && appState.currentStudentId) {
+        try {
+          const stRef = doc(db, 'artifacts', appId, 'public', 'data', 'students', appState.currentStudentId);
+          await updateDoc(stRef, {
+            quizScore: quizState.score,
+            quizPercent: percent,
+            quizDate: Date.now()
+          });
+          showToast("تم حفظ نتيجة الاختبار في سجلك بنجاح!", "success");
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    }
+
+    window.restartQuiz = function() {
+      quizState = { index: 0, score: 0, answered: false };
+      document.getElementById('quiz-result').classList.add('hidden');
+      document.getElementById('quiz-active').classList.remove('hidden');
+      renderQuizQuestion();
+    };
+
+    // =========================================================
+    // قسم «أثر المبادرة» (القياس القبلي والبعدي والرسم البياني)
+    // =========================================================
+    window.submitImpactSurvey = async function(e) {
+      e.preventDefault();
+      if (!db || !currentUser) {
+        showToast("قاعدة البيانات غير متصلة حالياً.", "error");
+        return;
+      }
+
+      const type = document.getElementById('impact-type').value;
+      const name = document.getElementById('impact-name').value.trim();
+      const scores = [
+        Number(document.getElementById('ind-1').value),
+        Number(document.getElementById('ind-2').value),
+        Number(document.getElementById('ind-3').value),
+        Number(document.getElementById('ind-4').value),
+        Number(document.getElementById('ind-5').value)
+      ];
+
+      const btn = document.getElementById('impact-submit-btn');
+      btn.disabled = true;
+
+      try {
+        await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'impact_surveys'), {
+          type,
+          name,
+          scores,
+          createdAt: Date.now()
+        });
+        document.getElementById('impact-form').reset();
+        for (let i = 1; i <= 5; i++) document.getElementById('val-ind-' + i).innerText = '3 / 5';
+        showToast("تم تسجيل استبانة قياس الأثر بنجاح!", "success");
+      } catch (err) {
+        console.error(err);
+        showToast("حدث خطأ أثناء حفظ الاستبانة.", "error");
+      } finally {
+        btn.disabled = false;
+      }
+    };
+
+    function renderImpactChart() {
+      const labels = [
+        "1. معرفة معنى الإنذار المبكر",
+        "2. التعرف على مخارج الطوارئ",
+        "3. معرفة مسار الإخلاء",
+        "4. التصرف بهدوء عند الإنذار",
+        "5. معرفة نقطة التجمع الآمنة"
+      ];
+
+      const preSurveys = appState.impacts.filter(s => s.type === 'pre');
+      const postSurveys = appState.impacts.filter(s => s.type === 'post');
+
+      document.getElementById('pre-count').innerText = preSurveys.length;
+      document.getElementById('post-count').innerText = postSurveys.length;
+
+      let totalPreAvg = 0;
+      let totalPostAvg = 0;
+
+      const barsHtml = labels.map((label, idx) => {
+        const preAvg = preSurveys.length > 0
+          ? (preSurveys.reduce((acc, s) => acc + (s.scores?.[idx] || 0), 0) / preSurveys.length)
+          : 0;
+        const postAvg = postSurveys.length > 0
+          ? (postSurveys.reduce((acc, s) => acc + (s.scores?.[idx] || 0), 0) / postSurveys.length)
+          : 0;
+
+        totalPreAvg += preAvg;
+        totalPostAvg += postAvg;
+
+        const prePct = Math.round((preAvg / 5) * 100);
+        const postPct = Math.round((postAvg / 5) * 100);
+
+        return `
+          <div class="space-y-1">
+            <div class="flex justify-between text-xs font-bold text-brand-dark">
+              <span>${label}</span>
+              <span class="text-brand-emerald">قبلي ${prePct}% ← بعدي ${postPct}%</span>
+            </div>
+            <div class="space-y-1">
+              <div class="w-full h-2.5 bg-gray-100 rounded-full overflow-hidden">
+                <div class="h-full bg-brand-gold transition-all duration-500" style="width: ${prePct}%"></div>
+              </div>
+              <div class="w-full h-2.5 bg-emerald-100 rounded-full overflow-hidden">
+                <div class="h-full bg-brand-emerald transition-all duration-500" style="width: ${postPct}%"></div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('impact-chart-bars').innerHTML = barsHtml;
+
+      const overallPre = preSurveys.length > 0 ? Math.round(((totalPreAvg / 5) / 5) * 100) : 0;
+      const overallPost = postSurveys.length > 0 ? Math.round(((totalPostAvg / 5) / 5) * 100) : 0;
+      const improvement = overallPost > overallPre ? (overallPost - overallPre) : 0;
+
+      document.getElementById('impact-improvement-badge').innerText = `نسبة التحسن المعرفي: +${improvement}%`;
+      const repGain = document.getElementById('rep-impact-gain');
+      if (repGain) repGain.innerText = `+${improvement}% (من ${overallPre}% قبلي إلى ${overallPost}% بعدي)`;
+    }
+
+    // =========================================================
+    // قسم «شواهد رحلة الأمان»
+    // =========================================================
+    window.filterEvidence = function(category) {
+      document.querySelectorAll('.ev-filter-btn').forEach(btn => {
+        if ((category === 'all' && btn.innerText === 'الكل') || btn.innerText.includes(category)) {
+          btn.className = "ev-filter-btn px-4 py-2 rounded-xl bg-brand-emerald text-white text-xs font-bold cursor-pointer";
+        } else {
+          btn.className = "ev-filter-btn px-4 py-2 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs font-bold cursor-pointer";
+        }
+      });
+      renderEvidenceGallery(category);
+    };
+
+    function renderEvidenceGallery(category = 'all') {
+      const grid = document.getElementById('evidence-gallery-grid');
+      const items = category === 'all'
+        ? appState.evidences
+        : appState.evidences.filter(e => e.category === category);
+
+      if (items.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full safe-card p-8 text-center text-gray-500 space-y-2">
+            <div class="text-4xl">📁</div>
+            <p class="font-bold text-brand-dark">لا توجد شواهد منشورة في هذا التصنيف حالياً.</p>
+            <p class="text-xs">تُضاف الشواهد والصور والملفات من خلال لوحة إدارة المبادرة.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = items.map(ev => `
+        <div class="safe-card overflow-hidden flex flex-col justify-between bg-white">
+          <div>
+            ${ev.imageData ? `
+              <div class="relative group cursor-pointer" onclick="openLightbox('${ev.imageData}', '${escapeHtml(ev.title)}')">
+                <img src="${ev.imageData}" alt="${escapeHtml(ev.title)}" class="w-full h-48 object-cover" />
+                <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white font-bold text-xs">
+                  🔍 تكبير الصورة
+                </div>
+              </div>
+            ` : `
+              <div class="h-36 bg-brand-mint flex items-center justify-center text-5xl border-b border-emerald-100">
+                ${ev.category === 'مقاطع فيديو' ? '🎬' : '📄'}
+              </div>
+            `}
+            <div class="p-4 space-y-1.5">
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-brand-goldLight text-amber-800 border border-brand-gold/40 text-[11px] font-bold">
+                ${escapeHtml(ev.category)}
+              </span>
+              <h4 class="font-black text-brand-darkest text-base">${escapeHtml(ev.title)}</h4>
+              <p class="text-xs text-gray-600">${escapeHtml(ev.desc || '')}</p>
+            </div>
+          </div>
+
+          <div class="px-4 py-3 bg-brand-ivory border-t border-emerald-100 flex items-center justify-between">
+            ${ev.imageData ? `<a href="${ev.imageData}" download="${escapeHtml(ev.title)}.jpg" class="text-xs font-bold text-brand-emerald hover:underline">تنزيل الصورة ⬇️</a>` : '<span></span>'}
+            ${ev.externalUrl ? `<a href="${escapeHtml(ev.externalUrl)}" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-lg bg-brand-emerald text-white text-xs font-bold">فتح الملف / الرابط ↗</a>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.openLightbox = function(src, title) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-caption').innerText = title;
+      document.getElementById('lightbox-download').href = src;
+      document.getElementById('image-lightbox-modal').classList.remove('hidden');
+    };
+
+    // =========================================================
+    // لوحة إدارة المبادرة المحمية (Admin Controls)
+    // =========================================================
+    window.openAdminGate = function() {
+      if (appState.isAdmin) {
+        navigateTo('admin');
+      } else {
+        document.getElementById('admin-login-modal').classList.remove('hidden');
+      }
+    };
+
+    window.verifyAdminLogin = function(e) {
+      e.preventDefault();
+      const code = document.getElementById('admin-passcode-input').value.trim();
+      // رمز التحقق الخاص بالمدرسة 122
+      if (code === '1222026') {
+        appState.isAdmin = true;
+        sessionStorage.setItem('is_admin_122', 'true');
+        closeModal('admin-login-modal');
+        document.getElementById('admin-passcode-input').value = '';
+        navigateTo('admin');
+        showToast("مرحباً بكِ في لوحة إدارة المبادرة 🛡️", "success");
+      } else {
+        showToast("رمز التحقق الإداري غير صحيح.", "error");
+      }
+    };
+
+    window.logoutAdmin = function() {
+      appState.isAdmin = false;
+      sessionStorage.removeItem('is_admin_122');
+      navigateTo('dashboard');
+      showToast("تم تسجيل الخروج من لوحة الإدارة.", "info");
+    };
+
+    window.switchAdminTab = function(tabName) {
+      ['posts', 'quizzes', 'evidence', 'reports'].forEach(t => {
+        const panel = document.getElementById('adm-panel-' + t);
+        const btn = document.getElementById('adm-tab-btn-' + t);
+        if (t === tabName) {
+          panel.classList.remove('hidden');
+          btn.className = "px-4 py-2.5 rounded-xl bg-brand-emerald text-white text-xs sm:text-sm font-bold cursor-pointer";
+        } else {
+          panel.classList.add('hidden');
+          btn.className = "px-4 py-2.5 rounded-xl bg-white border border-emerald-200 text-brand-dark text-xs sm:text-sm font-bold cursor-pointer";
+        }
+      });
+    };
+
+    window.renderAdminPosts = function() {
+      const container = document.getElementById('adm-posts-list');
+      const search = (document.getElementById('adm-search-post').value || '').trim().toLowerCase();
+      const statusFilter = document.getElementById('adm-filter-status').value;
+
+      const list = appState.wallPosts.filter(p => {
+        if (statusFilter !== 'all' && p.status !== statusFilter) return false;
+        if (search && !(p.studentName || '').toLowerCase().includes(search)) return false;
+        return true;
+      });
+
+      if (list.length === 0) {
+        container.innerHTML = `<p class="text-center text-gray-500 text-sm py-6">لا توجد مشاركات مطابقة للبحث.</p>`;
+        return;
+      }
+
+      container.innerHTML = list.map(p => {
+        const badge = p.status === 'approved'
+          ? '<span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">معتمدة ✅</span>'
+          : p.status === 'rejected'
+            ? '<span class="px-2.5 py-1 rounded-full bg-red-100 text-red-800 text-xs font-bold">مرفوضة ❌</span>'
+            : '<span class="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">بانتظار الموافقة ⏳</span>';
+
+        return `
+          <div class="p-4 rounded-2xl bg-brand-ivory border border-emerald-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div class="flex items-start gap-3">
+              ${p.imageData ? `<img src="${p.imageData}" class="w-16 h-16 rounded-xl object-cover border border-emerald-300 shrink-0" />` : ''}
+              <div class="space-y-1">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="font-black text-brand-darkest text-sm">${escapeHtml(p.studentName)}</span>
+                  <span class="text-xs text-gray-500">(${escapeHtml(p.grade)})</span>
+                  ${badge}
+                </div>
+                <div class="font-bold text-brand-emerald text-xs">${escapeHtml(p.title)}</div>
+                <p class="text-xs text-gray-700">${escapeHtml(p.message)}</p>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2 shrink-0">
+              ${p.status !== 'approved' ? `<button onclick="updatePostStatus('${p.id}', 'approved')" class="px-3 py-1.5 rounded-lg bg-brand-emerald text-white text-xs font-bold cursor-pointer">قبول ونشر ✅</button>` : ''}
+              ${p.status !== 'rejected' ? `<button onclick="updatePostStatus('${p.id}', 'rejected')" class="px-3 py-1.5 rounded-lg bg-amber-600 text-white text-xs font-bold cursor-pointer">رفض</button>` : ''}
+              ${p.imageData ? `<a href="${p.imageData}" download="مشاركة_${escapeHtml(p.studentName)}.jpg" class="px-3 py-1.5 rounded-lg bg-white border border-emerald-300 text-brand-dark text-xs font-bold">تنزيل الصورة</a>` : ''}
+              <button onclick="deleteWallPost('${p.id}')" class="px-3 py-1.5 rounded-lg bg-red-600 text-white text-xs font-bold cursor-pointer">حذف 🗑️</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    };
+
+    window.updatePostStatus = async function(postId, newStatus) {
+      if (!db || !currentUser) return;
+      try {
+        await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'wall_posts', postId), { status: newStatus });
+        showToast(newStatus === 'approved' ? "تم اعتماد المشاركة ونشرها في الجدارية!" : "تم رفض المشاركة.", "success");
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    window.deleteWallPost = async function(postId) {
+      if (!db || !currentUser) return;
+      try {
+        await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'wall_posts', postId));
+        showToast("تم حذف المشاركة بنجاح.", "info");
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    function renderAdminStudentsTable() {
+      const tbody = document.getElementById('adm-students-table');
+      if (appState.students.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="p-4 text-center text-gray-500">لا توجد بيانات مسجلة حتى الآن.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = appState.students.map(s => {
+        const dateStr = s.createdAt ? new Date(s.createdAt).toLocaleDateString('ar-SA') : '-';
+        const scoreStr = typeof s.quizScore === 'number' ? `${s.quizScore} / 10` : 'لم يُختبر';
+        const pctStr = typeof s.quizPercent === 'number' ? `${s.quizPercent}%` : '-';
+        return `
+          <tr class="hover:bg-brand-ivory">
+            <td class="p-3 font-bold text-brand-darkest">${escapeHtml(s.name)}</td>
+            <td class="p-3">${escapeHtml(s.grade)} (${escapeHtml(s.classRoom || '-')})</td>
+            <td class="p-3">${s.journeyCompleted ? '<span class="text-brand-emerald font-bold">مكتملة 🏆</span>' : '<span class="text-amber-600">قيد التقدم</span>'}</td>
+            <td class="p-3 font-extrabold">${scoreStr}</td>
+            <td class="p-3 font-bold text-brand-emerald">${pctStr}</td>
+            <td class="p-3 text-gray-500">${dateStr}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    window.submitAdminEvidence = async function(e) {
+      e.preventDefault();
+      if (!db || !currentUser) return;
+
+      const title = document.getElementById('ev-title').value.trim();
+      const category = document.getElementById('ev-category').value;
+      const desc = document.getElementById('ev-desc').value.trim();
+      const externalUrl = document.getElementById('ev-external-url').value.trim();
+      const fileInput = document.getElementById('ev-image-file');
+
+      const btn = document.getElementById('ev-submit-btn');
+      btn.disabled = true;
+      btn.innerText = "جاري الرفع...";
+
+      try {
+        let imageData = null;
+        if (fileInput.files && fileInput.files[0]) {
+          imageData = await compressImageToBase64(fileInput.files[0], 800, 0.78);
+        }
+
+        await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'evidence_items'), {
+          title,
+          category,
+          desc,
+          imageData,
+          externalUrl: externalUrl || null,
+          createdAt: Date.now()
+        });
+
+        document.getElementById('admin-evidence-form').reset();
+        showToast("تم إضافة الشاهد التوثيقي بنجاح!", "success");
+      } catch (err) {
+        console.error(err);
+        showToast("حدث خطأ أثناء رفع الشاهد.", "error");
+      } finally {
+        btn.disabled = false;
+        btn.innerText = "نشر الشاهد في المعرض 📤";
+      }
+    };
+
+    function renderAdminEvidenceList() {
+      const container = document.getElementById('adm-evidence-list');
+      container.innerHTML = appState.evidences.map(ev => `
+        <div class="p-3 rounded-xl bg-brand-ivory border border-emerald-200 flex items-center justify-between gap-2">
+          <div class="truncate">
+            <div class="font-bold text-xs text-brand-darkest truncate">${escapeHtml(ev.title)}</div>
+            <div class="text-[11px] text-brand-emerald">${escapeHtml(ev.category)}</div>
+          </div>
+          <button onclick="deleteEvidence('${ev.id}')" class="px-2.5 py-1 rounded-lg bg-red-600 text-white text-xs font-bold shrink-0 cursor-pointer">حذف</button>
+        </div>
+      `).join('');
+    }
+
+    window.deleteEvidence = async function(evId) {
+      if (!db || !currentUser) return;
+      try {
+        await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'evidence_items', evId));
+        showToast("تم حذف الشاهد.", "info");
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    // تصدير البيانات إلى ملف Excel حقيقي
+    window.exportReportExcel = function() {
+      try {
+        const rows = appState.students.map(s => ({
+          "اسم الطالبة": s.name,
+          "الصف الدراسي": s.grade,
+          "الفصل": s.classRoom || "-",
+          "إكمال رحلة الأمان": s.journeyCompleted ? "نعم" : "لا",
+          "درجة الاختبار (من 10)": typeof s.quizScore === 'number' ? s.quizScore : "لم يختبر",
+          "النسبة المئوية": typeof s.quizPercent === 'number' ? s.quizPercent + "%" : "-"
+        }));
+
+        if (rows.length === 0) {
+          rows.push({ "ملاحظة": "لا توجد بيانات طالبات مسجلة حتى الآن" });
+        }
+
+        const ws = XLSX.utils.json_to_sheet(rows);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "تقرير_أنا_أتصرف_بأمان");
+        XLSX.writeFile(wb, "تقرير_مبادرة_أنا_أتصرف_بأمان_122.xlsx");
+        showToast("تم تصدير ملف Excel بنجاح! 📊", "success");
+      } catch (err) {
+        console.error(err);
+        showToast("تعذر تصدير الملف.", "error");
+      }
+    };
+
+    // =========================================================
+    // المشاركة عبر واتساب و QR Code والنوافذ العامة
+    // =========================================================
+    window.openShareModal = function() {
+      const currentUrl = window.location.href;
+      document.getElementById('share-url-input').value = currentUrl;
+      
+      const shareText = encodeURIComponent(`مبادرة «أنا أتصرف بأمان – رحلة التأهب للإنذار المبكر»\nالمدرسة الابتدائية الثانية والعشرون بعد المائة\nشاركينا رحلة الأمان عبر الرابط:\n${currentUrl}`);
+      document.getElementById('whatsapp-share-link').href = `https://wa.me/?text=${shareText}`;
+
+      const qrContainer = document.getElementById('qrcode-container');
+      qrContainer.innerHTML = '';
+      new QRCode(qrContainer, {
+        text: currentUrl,
+        width: 148,
+        height: 148,
+        colorDark: "#041f15",
+        colorLight: "#ffffff"
+      });
+
+      document.getElementById('share-modal').classList.remove('hidden');
+    };
+
+    window.copyShareLink = function() {
+      const input = document.getElementById('share-url-input');
+      input.select();
+      document.execCommand('copy');
+      showToast("تم نسخ رابط المبادرة بنجاح! 📋", "success");
+    };
+
+    window.closeModal = function(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+    };
+
+    // نظام رسائل التنبيه المخصصة
+    window.showToast = function(message, type = "info") {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const colors = type === "success"
+        ? "bg-brand-darkest text-white border-brand-light"
+        : type === "error"
+          ? "bg-red-900 text-white border-red-400"
+          : "bg-brand-dark text-white border-brand-gold";
+
+      toast.className = `pointer-events-auto p-3.5 rounded-2xl border-r-4 shadow-xl text-xs sm:text-sm font-bold flex items-center justify-between gap-3 transition-all duration-300 ${colors}`;
+      toast.innerHTML = `<span>${message}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 4200);
+    };
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    // تشغيل التطبيق عند اكتمال تحميل الصفحة
+    window.addEventListener('DOMContentLoaded', () => {
+      buildJourneyStaticContent();
+      renderAwarenessCards();
+      renderImpactChart();
+      initCloudBackend();
+    });
+  </script>
+</body>
+</html>
